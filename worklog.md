@@ -582,3 +582,105 @@ Stage Summary:
 - Dashboard is now significantly richer with health score, insights, quick transfer, and calendar
 - Global search provides app-wide navigation with keyboard shortcut
 - Calendar provides visual overview of upcoming payments
+
+---
+Task ID: CRON-REVIEW-2
+Agent: Cron webDevReview
+Task: QA testing and new feature development (Savings Goals, Achievements, Spending Limit)
+
+Work Log:
+- Reviewed worklog.md — project stable with 35 screens + 7 features from last review
+- Performed comprehensive QA with agent-browser:
+  - Login flow → working
+  - Dashboard with all existing features → working (Financial Health Score, Spending Insights, Quick Transfer, Calendar)
+  - Financial management (4 tabs, charts) → working
+  - Payment hub (4 methods) → working
+  - Contracts (22 contracts, 5 types) → working
+  - B2B mode (dashboard, payment-link, products) → working
+  - No runtime errors, no console errors
+
+New Features Added (5 new features + 3 new screens):
+
+1. **Savings Goals Screen** (`b2c/screens/savings-goals.tsx`)
+   - Full screen with 4 savings goals (سفر به کیش، لپ‌تاپ، پس‌انداز اضطراری، دوچرخه)
+   - Summary card with total saved / total target / overall progress
+   - Goal cards with icon, title, category badge, progress bar, due date, "+ پس‌انداز" button
+   - Goal detail bottom sheet with animated progress ring (SVG), stats grid, add savings input with quick amounts, delete button
+   - Add goal form with title input, target amount, icon picker (12 icons), color picker (8 colors), live preview
+   - FAB "هدف جدید" button
+   
+2. **Achievements Screen** (`b2c/screens/achievements.tsx`)
+   - Full screen with 12 achievements across 5 categories (payment, savings, social, security, streak)
+   - Summary card with unlocked count + overall progress
+   - Category filter chips (همه، پرداخت، پس‌انداز، اجتماعی، امنیت، پیاپی)
+   - Achievement grid (2 cols) with locked/unlocked states, progress bars for incomplete
+   - Detail modal with large animated icon, category badge, status, progress
+   - 8 unlocked achievements (🎉 اولین پرداخت، 📊 پرداخت ماهانه، 💼 مدیر مالی، 🐷 پس‌اندازکار، 👥 اجتماعی، 🔒 امن، 🔥 ۷ روز پیاپی، 📜 قرارداد بند، 👑 VIP)
+   
+3. **Spending Limit Widget** (`shared/spending-limit-widget.tsx`)
+   - Dashboard widget showing monthly budget tracking
+   - Animated spent amount with shimmer effect on progress bar
+   - Status indicators: green (normal), yellow (warning ≥80%), red (over budget)
+   - Stats: daily average, top spending category
+   - Smart recommendation based on remaining budget + days left
+   
+4. **Savings Goals Preview** (`shared/savings-goals-preview.tsx`)
+   - Dashboard widget showing savings goals summary
+   - Mini progress ring (SVG) showing overall progress
+   - Horizontal scrollable goal cards with progress bars
+   - "هدف جدید" quick add button with dashed border
+   
+5. **Achievements Preview** (`shared/achievements-preview.tsx`)
+   - Dashboard widget with gradient background (orange→red→pink)
+   - Overall progress bar
+   - Recent unlocked achievements (4 icons in grid)
+   - Locked placeholder for "بیشتر"
+
+Mock Data Added:
+- `savingsGoals` (4 goals with target/current/progress/dueDate/color/category)
+- `totalSavingsGoals`, `totalSavingsTargets` computed totals
+- `achievements` (12 achievements with unlocked/progress/category)
+- `unlockedAchievements` count
+- `monthlySpendingLimit` (limit, spent, remaining, progress, daysLeft, dailyAverage, topCategory)
+- `weeklyActivity` (7 days of transaction counts + amounts)
+
+Dashboard Enhancements:
+- Added SpendingLimitWidget after SpendingInsights
+- Added SavingsGoalsPreview widget
+- Added AchievementsPreview widget
+- Dashboard now has 7 interactive widgets (greeting, wallet, quick transfer, health score, insights, spending limit, savings goals, achievements)
+
+Store Updates:
+- Added `savings-goals` and `achievements` to B2CScreen type
+- Registered new screens in b2c-app.tsx router
+- Added screen titles for navigation
+
+Styling Improvements:
+- Gradient backgrounds on achievements (orange→red→pink) and savings (green)
+- SVG circular progress rings with framer-motion animation
+- Shimmer effect on spending limit progress bar
+- Color-coded status indicators (green/yellow/red)
+- Lock icons for locked achievements with grayscale
+- Trophy icon for goals ≥80% progress
+- Category badges with background tints
+- Icon picker grid with selected state ring
+- Color picker with ring offset
+- Live preview in add goal form
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser:
+  - Dashboard renders with all 3 new widgets (Spending Limit, Savings Goals Preview, Achievements Preview)
+  - Savings Goals screen: 4 goals display, detail sheet opens with progress ring, add goal form works with icon/color picker
+  - Achievements screen: 12 achievements display, category filters work, detail modal opens
+  - No runtime errors, no console errors
+
+Stage Summary:
+- Added 5 new features: SavingsGoalsScreen, AchievementsScreen, SpendingLimitWidget, SavingsGoalsPreview, AchievementsPreview
+- Added 3 new screens (savings-goals, achievements) + 2 new dashboard widgets
+- Added 6 new mock data exports (savingsGoals, achievements, monthlySpendingLimit, weeklyActivity, etc.)
+- All new features tested and working
+- Lint clean, no errors
+- Dashboard is now significantly richer with gamification (achievements), savings tracking, and budget management
+- Total screens: 37 B2C + 10 B2B = 47 screens

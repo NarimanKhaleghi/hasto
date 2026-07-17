@@ -32,6 +32,8 @@ import { ProfileScreen } from "@/components/hasto/b2c/screens/profile";
 import { NotificationsScreen } from "@/components/hasto/b2c/screens/notifications";
 import { WalletDetailScreen } from "@/components/hasto/b2c/screens/wallet-detail";
 import { CalendarScreen } from "@/components/hasto/b2c/screens/calendar";
+import { SavingsGoalsScreen } from "@/components/hasto/b2c/screens/savings-goals";
+import { AchievementsScreen } from "@/components/hasto/b2c/screens/achievements";
 
 const screens: Record<string, React.ComponentType> = {
   login: LoginScreen,
@@ -59,6 +61,8 @@ const screens: Record<string, React.ComponentType> = {
   notifications: NotificationsScreen,
   "wallet-detail": WalletDetailScreen,
   calendar: CalendarScreen,
+  "savings-goals": SavingsGoalsScreen,
+  achievements: AchievementsScreen,
 };
 
 const noChromeScreens = ["login", "transfer-pin", "transfer-receipt", "payment-pin", "payment-receipt"];
@@ -117,6 +121,8 @@ function getScreenTitle(screen: string): string | undefined {
     notifications: "اعلان‌ها",
     "wallet-detail": "کیف پول مادر",
     calendar: "تقویم پرداخت",
+    "savings-goals": "اهداف پس‌انداز",
+    achievements: "دستاوردها",
   };
   return titles[screen];
 }

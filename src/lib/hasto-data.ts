@@ -824,3 +824,139 @@ export const balanceTrend = [
   { day: "روز ۲۵", balance: 12450000 },
   { day: "روز ۳۰", balance: 12450000 },
 ];
+
+// ==================== Savings Goals ====================
+export type SavingsGoal = {
+  id: string;
+  title: string;
+  icon: string;
+  targetAmount: number;
+  targetAmountText: string;
+  currentAmount: number;
+  currentAmountText: string;
+  remainingText: string;
+  progress: number;
+  dueDate: string;
+  color: string;
+  category: string;
+};
+
+export const savingsGoals: SavingsGoal[] = [
+  {
+    id: "GOAL-001",
+    title: "سفر نوروزی به کیش",
+    icon: "✈️",
+    targetAmount: 50000000,
+    targetAmountText: "۵۰,۰۰۰,۰۰۰",
+    currentAmount: 18500000,
+    currentAmountText: "۱۸,۵۰۰,۰۰۰",
+    remainingText: "۳۱,۵۰۰,۰۰۰",
+    progress: 37,
+    dueDate: "۱۴۰۶/۰۱/۰۱",
+    color: "#0EA5E9",
+    category: "سفر",
+  },
+  {
+    id: "GOAL-002",
+    title: "خرید لپ‌تاپ جدید",
+    icon: "💻",
+    targetAmount: 35000000,
+    targetAmountText: "۳۵,۰۰۰,۰۰۰",
+    currentAmount: 28000000,
+    currentAmountText: "۲۸,۰۰۰,۰۰۰",
+    remainingText: "۷,۰۰۰,۰۰۰",
+    progress: 80,
+    dueDate: "۱۴۰۵/۰۹/۰۱",
+    color: "#8B5CF6",
+    category: "تکنولوژی",
+  },
+  {
+    id: "GOAL-003",
+    title: "پس‌انداز اضطراری",
+    icon: "🛡️",
+    targetAmount: 100000000,
+    targetAmountText: "۱۰۰,۰۰۰,۰۰۰",
+    currentAmount: 45000000,
+    currentAmountText: "۴۵,۰۰۰,۰۰۰",
+    remainingText: "۵۵,۰۰۰,۰۰۰",
+    progress: 45,
+    dueDate: "۱۴۰۶/۰۶/۰۱",
+    color: "#16a34a",
+    category: "امنیت",
+  },
+  {
+    id: "GOAL-004",
+    title: "خرید دوچرخه",
+    icon: "🚲",
+    targetAmount: 12000000,
+    targetAmountText: "۱۲,۰۰۰,۰۰۰",
+    currentAmount: 4200000,
+    currentAmountText: "۴,۲۰۰,۰۰۰",
+    remainingText: "۷,۸۰۰,۰۰۰",
+    progress: 35,
+    dueDate: "۱۴۰۵/۱۱/۰۱",
+    color: "#F59E0B",
+    category: "سرگرمی",
+  },
+];
+
+export const totalSavingsGoals = savingsGoals.reduce((sum, g) => sum + g.currentAmount, 0);
+export const totalSavingsTargets = savingsGoals.reduce((sum, g) => sum + g.targetAmount, 0);
+
+// ==================== Achievements / Badges ====================
+export type Achievement = {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+  unlocked: boolean;
+  unlockedDate?: string;
+  progress?: number;
+  category: "payment" | "savings" | "social" | "security" | "streak";
+};
+
+export const achievements: Achievement[] = [
+  { id: "ACH-001", title: "اولین پرداخت", description: "اولین پرداخت خود را انجام دهید", icon: "🎉", color: "#034ea2", unlocked: true, unlockedDate: "۱۴۰۵/۰۱/۰۱", category: "payment" },
+  { id: "ACH-002", title: "پرداخت ماهانه", description: "۱۰ تراکنش در یک ماه", icon: "📊", color: "#16a34a", unlocked: true, unlockedDate: "۱۴۰۵/۰۲/۰۱", category: "payment" },
+  { id: "ACH-003", title: "مدیر مالی", description: "۵۰ تراکنش کلی", icon: "💼", color: "#8B5CF6", unlocked: true, unlockedDate: "۱۴۰۵/۰۳/۰۱", category: "payment" },
+  { id: "ACH-004", title: "پس‌اندازکار", description: "اولین هدف پس‌انداز را بسازید", icon: "🐷", color: "#F59E0B", unlocked: true, unlockedDate: "۱۴۰۵/۰۲/۱۵", category: "savings" },
+  { id: "ACH-005", title: "هدیف‌محور", description: "یک هدف پس‌انداز را کامل کنید", icon: "🎯", color: "#EF4444", unlocked: false, progress: 80, category: "savings" },
+  { id: "ACH-006", title: "اجتماعی", description: "به ۵ دوست پول بفرستید", icon: "👥", color: "#0EA5E9", unlocked: true, unlockedDate: "۱۴۰۵/۰۳/۱۰", category: "social" },
+  { id: "ACH-007", title: "امن", description: "احراز هویت دو مرحله‌ای فعال کنید", icon: "🔒", color: "#6366F1", unlocked: true, unlockedDate: "۱۴۰۵/۰۱/۰۱", category: "security" },
+  { id: "ACH-008", title: "۷ روز پیاپی", description: "۷ روز پشت سر هم وارد شوید", icon: "🔥", color: "#EC4899", unlocked: true, unlockedDate: "۱۴۰۵/۰۴/۰۷", category: "streak" },
+  { id: "ACH-009", title: "۳۰ روز پیاپی", description: "۳۰ روز پشت سر هم وارد شوید", icon: "⚡", color: "#F59E0B", unlocked: false, progress: 65, category: "streak" },
+  { id: "ACH-010", title: "قرارداد بند", description: "۱۰ قرارداد فعال داشته باشید", icon: "📜", color: "#10B981", unlocked: true, unlockedDate: "۱۴۰۵/۰۳/۰۱", category: "payment" },
+  { id: "ACH-011", title: "VIP", description: "موجودی بالای ۱۰ میلیون تومان", icon: "👑", color: "#FCD34D", unlocked: true, unlockedDate: "۱۴۰۵/۰۲/۰۱", category: "savings" },
+  { id: "ACH-012", title: "بهره‌مند", description: "از ۱۸ دسته خدمت استفاده کنید", icon: "⭐", color: "#8B5CF6", unlocked: false, progress: 45, category: "payment" },
+];
+
+export const unlockedAchievements = achievements.filter((a) => a.unlocked).length;
+
+// ==================== Monthly Spending Limit ====================
+export const monthlySpendingLimit = {
+  limit: 15000000,
+  limitText: "۱۵,۰۰۰,۰۰۰",
+  spent: 8750000,
+  spentText: "۸,۷۵۰,۰۰۰",
+  remaining: 6250000,
+  remainingText: "۶,۲۵۰,۰۰۰",
+  progress: 58,
+  daysLeft: 12,
+  dailyAverage: 350000,
+  dailyAverageText: "۳۵۰,۰۰۰",
+  topCategory: "خوراک",
+  topCategoryAmount: 3200000,
+  topCategoryAmountText: "۳,۲۰۰,۰۰۰",
+};
+
+// ==================== Weekly Activity Data (for activity chart) ====================
+export const weeklyActivity = [
+  { day: "شنبه", transactions: 3, amount: 1200000 },
+  { day: "یکشنبه", transactions: 5, amount: 2800000 },
+  { day: "دوشنبه", transactions: 2, amount: 850000 },
+  { day: "سه‌شنبه", transactions: 6, amount: 3500000 },
+  { day: "چهارشنبه", transactions: 4, amount: 2200000 },
+  { day: "پنجشنبه", transactions: 7, amount: 4100000 },
+  { day: "جمعه", transactions: 1, amount: 350000 },
+];

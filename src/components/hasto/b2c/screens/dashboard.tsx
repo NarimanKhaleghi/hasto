@@ -6,6 +6,9 @@ import { SectionCard } from "@/components/hasto/shared/ui";
 import { FinancialHealthScore } from "@/components/hasto/shared/financial-health-score";
 import { SpendingInsights } from "@/components/hasto/shared/spending-insights";
 import { TimeGreeting } from "@/components/hasto/shared/time-greeting";
+import { SpendingLimitWidget } from "@/components/hasto/shared/spending-limit-widget";
+import { SavingsGoalsPreview } from "@/components/hasto/shared/savings-goals-preview";
+import { AchievementsPreview } from "@/components/hasto/shared/achievements-preview";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -290,6 +293,21 @@ export function DashboardScreen() {
       {/* Spending Insights */}
       <div className="px-4 mb-4">
         <SpendingInsights />
+      </div>
+
+      {/* Monthly Spending Limit Widget */}
+      <div className="px-4 mb-4">
+        <SpendingLimitWidget />
+      </div>
+
+      {/* Savings Goals Preview */}
+      <div className="px-4 mb-4">
+        <SavingsGoalsPreview />
+      </div>
+
+      {/* Achievements Preview */}
+      <div className="px-4 mb-4">
+        <AchievementsPreview />
       </div>
 
       {/* Recent transactions */}
