@@ -13,6 +13,8 @@ import { ActivityHeatmap } from "@/components/hasto/shared/activity-heatmap";
 import { WeeklyActivityChart } from "@/components/hasto/shared/weekly-activity-chart";
 import { MarketPricesPreview } from "@/components/hasto/shared/market-prices-preview";
 import { SpendingCategoriesPreview } from "@/components/hasto/shared/spending-categories-preview";
+import { QuickStatsBar } from "@/components/hasto/shared/quick-stats-bar";
+import { IncomeExpenseComparison } from "@/components/hasto/shared/income-expense-comparison";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -77,6 +79,11 @@ export function DashboardScreen() {
             تقویم
           </button>
         </div>
+      </div>
+
+      {/* Quick Stats Bar */}
+      <div className="px-4 mb-3">
+        <QuickStatsBar />
       </div>
 
       {/* Mother Wallet Card */}
@@ -343,6 +350,11 @@ export function DashboardScreen() {
       {/* Spending Categories Preview */}
       <div className="px-4 mb-4">
         <SpendingCategoriesPreview />
+      </div>
+
+      {/* Income vs Expense Comparison */}
+      <div className="px-4 mb-4">
+        <IncomeExpenseComparison />
       </div>
 
       {/* Recent transactions */}

@@ -907,3 +907,96 @@ Stage Summary:
 - All new features tested and working
 - Lint clean, no errors
 - Total screens: 39 B2C + 10 B2B = 49 screens
+
+---
+Task ID: CRON-REVIEW-5
+Agent: Cron webDevReview
+Task: QA testing and new feature development (Quick Stats, Income/Expense, Transaction Detail)
+
+Work Log:
+- Reviewed worklog.md — project stable with 49 screens + 20 features from previous reviews
+- Performed comprehensive QA with agent-browser:
+  - Login flow → working
+  - Dashboard with all widgets → working
+  - Receive screen → working (QR, card/sheba display, copy buttons)
+  - B2B products screen → working (5 products displayed)
+  - No runtime errors, no console errors
+
+New Features Added (3 new features):
+
+1. **Quick Stats Bar Widget** (`shared/quick-stats-bar.tsx`)
+   - Compact 4-column horizontal stats bar at top of dashboard
+   - 4 clickable stats: موجودی (Balance)، پس‌انداز (Savings)، طلب‌ها (Receivables)، بدهی‌ها (Debts)
+   - Each stat: colored icon, formatted value (هزار/میلیون/میلیارد), label
+   - Click navigates to relevant screen (wallet-detail, savings-goals, financial)
+   - Animated entrance with staggered scale-in
+   - Hover scale effect on icons
+   - Smart number formatting for large amounts
+   
+2. **Income vs Expense Comparison Widget** (`shared/income-expense-comparison.tsx`)
+   - Dashboard widget comparing current month income vs expense
+   - Two animated progress bars (green income, red expense) with shimmer effect
+   - Month-over-month change indicators (+/- %)
+   - Net savings display with success tint
+   - Savings rate percentage
+   - Comparison vs previous month
+   - Uses cashFlowData mock data (6 months)
+   
+3. **Transaction Detail Sheet** (`shared/transaction-detail-sheet.tsx`)
+   - Enhanced reusable bottom sheet for transaction details
+   - Status header with colored icon, amount (large), status badge, date/time
+   - Details list: tracking number (copyable), category, payment method, fee
+   - Recipient/sender info card with avatar, name, bank, account (copyable)
+   - Description section
+   - Share button (navigator.share with clipboard fallback)
+   - Download button (mock)
+   - Fallback generator for transactions not in details map
+   - Spring animations and staggered entrance
+
+Dashboard Enhancements:
+- Added QuickStatsBar between greeting and wallet card
+- Added IncomeExpenseComparison after SpendingCategoriesPreview
+- Dashboard now has 19 sections/widgets total:
+  1. Time greeting + onboarding + calendar buttons
+  2. **NEW** Quick stats bar (4 clickable stats)
+  3. Mother wallet card
+  4. واریز/دریافت buttons
+  5. Quick actions (5 buttons)
+  6. Bills alert
+  7. Quick repeat transfer
+  8. Financial health score
+  9. Spending insights
+  10. Spending limit widget
+  11. Savings goals preview
+  12. Achievements preview
+  13. Weekly activity chart
+  14. Activity heatmap
+  15. Market prices preview
+  16. Spending categories preview
+  17. **NEW** Income vs expense comparison
+  18. Recent transactions
+  19. Active installments
+
+Styling Improvements:
+- Quick stats: 4-column grid with colored icon backgrounds, hover scale, smart formatting
+- Income/expense: dual progress bars with shimmer, colored trend indicators, savings highlight card
+- Transaction detail: gradient status header, copyable fields with check feedback, avatar for recipient
+- All new widgets use staggered framer-motion animations
+- Consistent Tejarat Blue color palette with semantic colors (success/warning/destructive)
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser:
+  - QuickStatsBar: all 4 stats display correctly (۱۲.۴م موجودی، ۹۵.۷م پس‌انداز، ۱۶.۵م طلب‌ها، ۱۴.۹م بدهی‌ها)
+  - QuickStatsBar: clicking "پس‌انداز" navigates to savings-goals screen ✅
+  - IncomeExpenseComparison: "درآمد و هزینه" heading displays
+  - No runtime errors, no console errors
+
+Stage Summary:
+- Added 3 new features: QuickStatsBar, IncomeExpenseComparison, TransactionDetailSheet
+- Added 2 new dashboard widgets (quick stats, income/expense comparison)
+- Dashboard now has 19 sections — a comprehensive financial dashboard
+- All new features tested and working
+- Lint clean, no errors
+- Total screens: 39 B2C + 10 B2B = 49 screens (unchanged, added widgets not screens)
