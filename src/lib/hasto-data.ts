@@ -960,3 +960,99 @@ export const weeklyActivity = [
   { day: "پنجشنبه", transactions: 7, amount: 4100000 },
   { day: "جمعه", transactions: 1, amount: 350000 },
 ];
+
+// ==================== Activity Heatmap (GitHub-style, 12 weeks) ====================
+export type HeatmapCell = {
+  week: number;
+  day: number; // 0-6 (Sat-Fri)
+  count: number;
+  amount: number;
+  level: 0 | 1 | 2 | 3 | 4; // intensity level
+};
+
+// Generate 12 weeks x 7 days = 84 cells of mock activity
+function generateHeatmap(): HeatmapCell[] {
+  const cells: HeatmapCell[] = [];
+  const seed = 42;
+  let hash = seed;
+  for (let w = 0; w < 12; w++) {
+    for (let d = 0; d < 7; d++) {
+      hash = (hash * 1103515245 + 12345) & 0x7fffffff;
+      const r = (hash >> 16) % 100;
+      let count = 0;
+      let amount = 0;
+      let level: 0 | 1 | 2 | 3 | 4 = 0;
+      // Friday (d=6) less active
+      if (d === 6) {
+        if (r > 70) { count = 1; amount = (hash % 500000) + 100000; level = 1; }
+      } else if (r > 85) {
+        count = 0; level = 0;
+      } else if (r > 60) {
+        count = 1; amount = (hash % 500000) + 100000; level = 1;
+      } else if (r > 35) {
+        count = 2 + (r % 2); amount = (hash % 2000000) + 500000; level = 2;
+      } else if (r > 15) {
+        count = 4 + (r % 3); amount = (hash % 4000000) + 1500000; level = 3;
+      } else {
+        count = 7 + (r % 4); amount = (hash % 8000000) + 3000000; level = 4;
+      }
+      cells.push({ week: w, day: d, count, amount, level });
+    }
+  }
+  return cells;
+}
+
+export const activityHeatmap: HeatmapCell[] = generateHeatmap();
+
+export const heatmapStats = {
+  totalTransactions: activityHeatmap.reduce((s, c) => s + c.count, 0),
+  totalAmount: activityHeatmap.reduce((s, c) => s + c.amount, 0),
+  activeDays: activityHeatmap.filter((c) => c.count > 0).length,
+  bestDay: activityHeatmap.reduce((best, c) => (c.count > best.count ? c : best), activityHeatmap[0]),
+  streak: 14, // mock: 14 day streak
+  avgPerDay: 0, // computed below
+};
+heatmapStats.avgPerDay = Math.round(
+  activityHeatmap.reduce((s, c) => s + c.amount, 0) / 84
+);
+
+// ==================== Currency Rates ====================
+export type Currency = {
+  code: string;
+  name: string;
+  symbol: string;
+  flag: string;
+  buyRate: number; // IRR per 1 unit
+  sellRate: number;
+  change: number; // % change 24h
+  trend: "up" | "down";
+};
+
+export const currencies: Currency[] = [
+  { code: "USD", name: "دلار آمریکا", symbol: "$", flag: "🇺🇸", buyRate: 67500, sellRate: 67200, change: 1.8, trend: "up" },
+  { code: "EUR", name: "یورو", symbol: "€", flag: "🇪🇺", buyRate: 73200, sellRate: 72800, change: 0.9, trend: "up" },
+  { code: "AED", name: "درهم امارات", symbol: "د.إ", flag: "🇦🇪", buyRate: 18380, sellRate: 18290, change: 1.5, trend: "up" },
+  { code: "TRY", name: "لیر ترکیه", symbol: "₺", flag: "🇹🇷", buyRate: 2150, sellRate: 2120, change: -2.1, trend: "down" },
+  { code: "GBP", name: "پوند انگلیس", symbol: "£", flag: "🇬🇧", buyRate: 85800, sellRate: 85400, change: 0.4, trend: "up" },
+  { code: "CNY", name: "یوآن چین", symbol: "¥", flag: "🇨🇳", buyRate: 9320, sellRate: 9280, change: -0.6, trend: "down" },
+  { code: "RUB", name: "روبل روسیه", symbol: "₽", flag: "🇷🇺", buyRate: 780, sellRate: 765, change: 3.2, trend: "up" },
+  { code: "JPY", name: "ین ژاپن", symbol: "¥", flag: "🇯🇵", buyRate: 455, sellRate: 450, change: -0.3, trend: "down" },
+];
+
+// Gold prices (per gram, 18k and 24k and ounce)
+export const goldPrices = [
+  { name: "طلای ۱۸ عیار", price: 4520000, change: 2.3, trend: "up" as const, unit: "گرم", icon: "🥇" },
+  { name: "طلای ۲۴ عیار", price: 6020000, change: 2.1, trend: "up" as const, unit: "گرم", icon: "✨" },
+  { name: "سکه تمام", price: 45800000, change: 1.8, trend: "up" as const, unit: "عدد", icon: "🪙" },
+  { name: "انس طلا", price: 205000000, change: 0.5, trend: "up" as const, unit: "انس", icon: "🟡" },
+];
+
+// Crypto prices
+export const cryptoPrices = [
+  { name: "بیت‌کوین", symbol: "BTC", price: 4320000000, change: 3.4, trend: "up" as const, icon: "₿", color: "#F7931A" },
+  { name: "اتریوم", symbol: "ETH", price: 245000000, change: -1.2, trend: "down" as const, icon: "Ξ", color: "#627EEA" },
+  { name: "تتر", symbol: "USDT", price: 68000, change: 0.1, trend: "up" as const, icon: "₮", color: "#26A17B" },
+  { name: "دوج‌کوین", symbol: "DOGE", price: 4800, change: 5.6, trend: "up" as const, icon: "Ð", color: "#C2A633" },
+  { name: "ریپل", symbol: "XRP", price: 32000, change: -0.8, trend: "down" as const, icon: "✕", color: "#23292F" },
+  { name: "لایت‌کوین", symbol: "LTC", price: 8200000, change: 2.2, trend: "up" as const, icon: "Ł", color: "#345D9D" },
+];

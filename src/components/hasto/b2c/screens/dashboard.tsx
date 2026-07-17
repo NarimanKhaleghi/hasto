@@ -9,6 +9,9 @@ import { TimeGreeting } from "@/components/hasto/shared/time-greeting";
 import { SpendingLimitWidget } from "@/components/hasto/shared/spending-limit-widget";
 import { SavingsGoalsPreview } from "@/components/hasto/shared/savings-goals-preview";
 import { AchievementsPreview } from "@/components/hasto/shared/achievements-preview";
+import { ActivityHeatmap } from "@/components/hasto/shared/activity-heatmap";
+import { WeeklyActivityChart } from "@/components/hasto/shared/weekly-activity-chart";
+import { MarketPricesPreview } from "@/components/hasto/shared/market-prices-preview";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -308,6 +311,21 @@ export function DashboardScreen() {
       {/* Achievements Preview */}
       <div className="px-4 mb-4">
         <AchievementsPreview />
+      </div>
+
+      {/* Weekly Activity Chart */}
+      <div className="px-4 mb-4">
+        <WeeklyActivityChart />
+      </div>
+
+      {/* Activity Heatmap */}
+      <div className="px-4 mb-4">
+        <ActivityHeatmap />
+      </div>
+
+      {/* Market Prices Preview */}
+      <div className="px-4 mb-4">
+        <MarketPricesPreview />
       </div>
 
       {/* Recent transactions */}

@@ -684,3 +684,128 @@ Stage Summary:
 - Lint clean, no errors
 - Dashboard is now significantly richer with gamification (achievements), savings tracking, and budget management
 - Total screens: 37 B2C + 10 B2B = 47 screens
+
+---
+Task ID: CRON-REVIEW-3
+Agent: Cron webDevReview
+Task: QA testing and new feature development (Activity Heatmap, Currency Converter, Market Prices)
+
+Work Log:
+- Reviewed worklog.md — project stable with 47 screens + 12 features from previous reviews
+- Performed comprehensive QA with agent-browser:
+  - Login flow → working
+  - Dashboard with all 8 widgets → working
+  - Transfer flow → working
+  - B2B mode (dashboard) → working
+  - No runtime errors, no console errors
+
+New Features Added (4 new features + 1 new screen):
+
+1. **Activity Heatmap Widget** (`shared/activity-heatmap.tsx`)
+   - GitHub-style contribution heatmap showing 12 weeks (84 cells) of daily financial activity
+   - 5 intensity levels (0-4) with color gradient (light gray → Tejarat Blue)
+   - Hover tooltip showing transaction count + amount per cell
+   - Streak badge (۱۴ روز پیاپی) with flame icon
+   - Stats: total transactions, active days, average per day
+   - Best day insight card
+   - Legend (کمتر → بیشتر)
+   - Animated cell entrance (staggered scale-in)
+   - Dark mode aware (separate color palette)
+   
+2. **Weekly Activity Chart Widget** (`shared/weekly-activity-chart.tsx`)
+   - Bar chart showing 7 days of transaction amounts
+   - Today's bar highlighted with gradient + shimmer effect
+   - Hover tooltip with transaction count + amount
+   - Stats footer: total transactions, daily average, trend (+12%)
+   - Animated bar growth (staggered height animation)
+   - Color-coded bars (today vs other days)
+   
+3. **Market Prices Preview Widget** (`shared/market-prices-preview.tsx`)
+   - Dashboard widget showing live market prices
+   - 3 tabs: ارز (Currency), طلا (Gold), ارز دیجیتال (Crypto)
+   - 4 items per tab with flag, name, price, change %
+   - Trend indicators (green up / red down)
+   - "تبدیل" button linking to currency converter screen
+   - Smart price formatting (هزار/میلیون/میلیارد)
+   
+4. **Currency Converter Screen** (`b2c/screens/currency-converter.tsx`)
+   - Full screen with 3 tabs: ارز، طلا، ارز دیجیتال
+   - Converter card with gradient background:
+     - Amount input field
+     - Selected currency display with flag
+     - Swap icon (decorative)
+     - Converted Toman amount (copyable)
+     - Buy rate display
+   - Live rates list with 8 currencies, 4 gold types, 6 cryptocurrencies
+   - Each rate row: flag/icon, code, name, price, change %, trend indicator
+   - Clickable rate rows to select for conversion
+   - Info banner explaining rates are display-only
+   - Refresh button (mock)
+   
+5. **Enhanced Global Search**
+   - Added 4 new navigation entries: تقویم پرداخت، اهداف پس‌انداز، دستاوردها، تبدیل ارز
+   - Total searchable pages: 16 (up from 12)
+
+Mock Data Added:
+- `activityHeatmap` (84 cells: 12 weeks × 7 days, with count/amount/level)
+- `heatmapStats` (totalTransactions, activeDays, bestDay, streak, avgPerDay)
+- `currencies` (8 currencies: USD, EUR, AED, TRY, GBP, CNY, RUB, JPY with buy/sell rates + change)
+- `goldPrices` (4: 18k, 24k, سکه, انس with price/change/trend)
+- `cryptoPrices` (6: BTC, ETH, USDT, DOGE, XRP, LTC with price/change/color)
+
+Dashboard Enhancements:
+- Added WeeklyActivityChart after AchievementsPreview
+- Added ActivityHeatmap after WeeklyActivityChart
+- Added MarketPricesPreview after ActivityHeatmap
+- Dashboard now has 11 interactive widgets/sections:
+  1. Time greeting + calendar button
+  2. Mother wallet card
+  3. واریز/دریافت buttons
+  4. Quick actions (5 buttons)
+  5. Bills alert
+  6. Quick repeat transfer
+  7. Financial health score
+  8. Spending insights
+  9. Spending limit widget
+  10. Savings goals preview
+  11. Achievements preview
+  12. **NEW** Weekly activity chart
+  13. **NEW** Activity heatmap
+  14. **NEW** Market prices preview
+  15. Recent transactions
+  16. Active installments
+
+Store & Router Updates:
+- Added `currency-converter` to B2CScreen type
+- Registered currency-converter screen in b2c-app.tsx router
+- Added screen title "تبدیل ارز"
+- Updated global-search.tsx with 4 new nav entries + Target/Trophy/Coins icons
+
+Styling Improvements:
+- GitHub-style heatmap grid with 5 intensity levels and hover tooltips
+- Animated bar chart with shimmer effect on today's bar
+- Gradient converter card (Tejarat Blue) with backdrop blur
+- Smart number formatting (هزار/میلیون/میلیارد) for market prices
+- Trend indicators with colored badges (green/red)
+- Flag emojis for currencies, icons for gold/crypto
+- Staggered animations on all new widgets
+- Dark mode support for heatmap color palette
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser:
+  - Dashboard renders with all 3 new widgets (Weekly Activity, Heatmap, Market Prices)
+  - Currency Converter screen: all 3 tabs work (currency/gold/crypto), conversion works, rate list displays correctly
+  - Global Search finds "تبدیل ارز" and navigates correctly
+  - No runtime errors, no console errors
+
+Stage Summary:
+- Added 4 new features: ActivityHeatmap, WeeklyActivityChart, MarketPricesPreview, CurrencyConverterScreen
+- Added 1 new screen (currency-converter) + 3 new dashboard widgets
+- Added 5 new mock data exports (activityHeatmap, heatmapStats, currencies, goldPrices, cryptoPrices)
+- Enhanced global search with 4 new navigation entries
+- All new features tested and working
+- Lint clean, no errors
+- Dashboard is now a comprehensive financial dashboard with activity tracking, market data, and currency conversion
+- Total screens: 38 B2C + 10 B2B = 48 screens

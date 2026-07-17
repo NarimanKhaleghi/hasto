@@ -34,6 +34,7 @@ import { WalletDetailScreen } from "@/components/hasto/b2c/screens/wallet-detail
 import { CalendarScreen } from "@/components/hasto/b2c/screens/calendar";
 import { SavingsGoalsScreen } from "@/components/hasto/b2c/screens/savings-goals";
 import { AchievementsScreen } from "@/components/hasto/b2c/screens/achievements";
+import { CurrencyConverterScreen } from "@/components/hasto/b2c/screens/currency-converter";
 
 const screens: Record<string, React.ComponentType> = {
   login: LoginScreen,
@@ -63,6 +64,7 @@ const screens: Record<string, React.ComponentType> = {
   calendar: CalendarScreen,
   "savings-goals": SavingsGoalsScreen,
   achievements: AchievementsScreen,
+  "currency-converter": CurrencyConverterScreen,
 };
 
 const noChromeScreens = ["login", "transfer-pin", "transfer-receipt", "payment-pin", "payment-receipt"];
@@ -123,6 +125,7 @@ function getScreenTitle(screen: string): string | undefined {
     calendar: "تقویم پرداخت",
     "savings-goals": "اهداف پس‌انداز",
     achievements: "دستاوردها",
+    "currency-converter": "تبدیل ارز",
   };
   return titles[screen];
 }

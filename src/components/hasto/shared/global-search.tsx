@@ -18,6 +18,9 @@ import {
   Zap,
   Calendar,
   TrendingUp,
+  Target,
+  Trophy,
+  Coins,
   X,
   CornerDownLeft,
 } from "lucide-react";
@@ -70,6 +73,10 @@ export function GlobalSearch() {
       { id: "nav-transactions", title: "تراکنش‌ها", subtitle: "تاریخچه کامل", icon: CreditCard, category: "صفحات", action: () => setB2CScreen("transactions") },
       { id: "nav-notifications", title: "اعلان‌ها", subtitle: "مرکز اعلان‌ها", icon: Bell, category: "صفحات", action: () => setB2CScreen("notifications") },
       { id: "nav-profile", title: "پروفایل", subtitle: "تنظیمات حساب", icon: User, category: "صفحات", action: () => setB2CScreen("profile") },
+      { id: "nav-calendar", title: "تقویم پرداخت", subtitle: "رویدادهای مالی ماه", icon: Calendar, category: "صفحات", action: () => setB2CScreen("calendar") },
+      { id: "nav-savings", title: "اهداف پس‌انداز", subtitle: "مدیریت اهداف مالی", icon: Target, category: "صفحات", action: () => setB2CScreen("savings-goals") },
+      { id: "nav-achievements", title: "دستاوردها", subtitle: "نشان‌ها و افتخارات", icon: Trophy, category: "صفحات", action: () => setB2CScreen("achievements") },
+      { id: "nav-currency", title: "تبدیل ارز", subtitle: "نرخ ارز، طلا و کریپتو", icon: Coins, category: "صفحات", action: () => setB2CScreen("currency-converter") },
     ];
 
     // Services
