@@ -20,6 +20,7 @@ import { FinancialTipsCard } from "@/components/hasto/shared/financial-tips-card
 import { DailyStreakWidget } from "@/components/hasto/shared/daily-streak-widget";
 import { MonthlyOverviewWidget } from "@/components/hasto/shared/monthly-overview-widget";
 import { ReferralProgramWidget } from "@/components/hasto/shared/referral-program-widget";
+import { SecurityCenterWidget } from "@/components/hasto/shared/security-center-widget";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -41,6 +42,7 @@ import {
   Calendar as CalendarIcon,
   RotateCw,
   Sparkles,
+  HelpCircle,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -474,6 +476,28 @@ export function DashboardScreen() {
       {/* Referral Program Widget */}
       <div className="px-4 mt-4">
         <ReferralProgramWidget />
+      </div>
+
+      {/* Security Center Widget */}
+      <div className="px-4 mt-4">
+        <SecurityCenterWidget />
+      </div>
+
+      {/* Help & Support link */}
+      <div className="px-4 mt-4 mb-4">
+        <button
+          onClick={() => setB2CScreen("help-support")}
+          className="w-full flex items-center gap-3 p-3 rounded-2xl bg-card border border-border shadow-soft hover:shadow-md transition-shadow"
+        >
+          <div className="w-9 h-9 rounded-xl bg-[#034ea2]/15 dark:bg-[#6BA0F5]/15 flex items-center justify-center shrink-0">
+            <HelpCircle className="w-4 h-4 text-[#034ea2] dark:text-[#6BA0F5]" />
+          </div>
+          <div className="flex-1 text-right">
+            <p className="text-sm font-bold">پشتیبانی و راهنما</p>
+            <p className="text-[11px] text-muted-foreground">سوالات متداول، تماس با ما</p>
+          </div>
+          <ChevronLeft className="w-4 h-4 text-muted-foreground" />
+        </button>
       </div>
 
       {/* Wallet Detail Sheet */}

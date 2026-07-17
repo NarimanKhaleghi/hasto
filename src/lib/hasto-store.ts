@@ -37,7 +37,8 @@ export type B2CScreen =
   | "savings-goals"
   | "achievements"
   | "currency-converter"
-  | "spending-categories";
+  | "spending-categories"
+  | "help-support";
 
 // ==================== B2B Screens ====================
 export type B2BScreen =

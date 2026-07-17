@@ -1272,3 +1272,85 @@ Stage Summary:
 - All new features tested and working
 - Lint clean, no errors
 - Total screens: 39 B2C + 10 B2B = 49 screens (unchanged, added widgets not screens)
+
+---
+Task ID: CRON-REVIEW-9
+Agent: Cron webDevReview
+Task: QA testing and new feature development (Security Center, Help & Support)
+
+Work Log:
+- Reviewed worklog.md — project stable with 49 screens + 29 features from previous reviews
+- Performed comprehensive QA with agent-browser:
+  - Login flow → working
+  - Dashboard with all 24 widgets → working
+  - Payment hub → working (4 methods displayed)
+  - No runtime errors, no console errors
+
+New Features Added (2 new features + 1 new screen):
+
+1. **Security Center Widget** (`shared/security-center-widget.tsx`)
+   - Dashboard widget showing account security status
+   - Security score (۸۰٪) with animated progress bar + shimmer
+   - 5 security items with status indicators:
+     - احراز هویت دو مرحله‌ای (secure - green)
+     - ورود بیومتریک (secure - green)
+     - رمز عبور قوی (secure - green)
+     - دستگاه‌های فعال (warning - amber, ۲ دستگاه)
+     - حریم خصوصی (action - blue, بررسی)
+   - Pulsing ring on shield icon when 100% secure
+   - "حساب شما امن است" badge when score ≥ 80%
+   - "تنظیمات" button linking to profile
+   - Color-coded statuses (green/amber/blue)
+   
+2. **Help & Support Screen** (`b2c/screens/help-support.tsx`)
+   - Full support screen with 4 sections:
+     - Contact methods grid (4 buttons): گفتگوی زنده، تماس تلفنی، ایمیل، گزارش مشکل
+     - Quick links grid (4 buttons): راهنمای استفاده، نکات مالی، امتیازدهی، وضعیت سرویس
+     - FAQ search bar with live filtering
+     - Category filter chips (7 categories)
+     - FAQ list (8 questions) with expandable answers (accordion)
+   - Contact form modal (bug report) with subject + message fields
+   - Animated accordion expand/collapse
+   - Toast notifications on all actions
+   - Empty state for no search results
+   
+3. **Enhanced Global Search**
+   - Added "پشتیبانی و راهنما" navigation entry
+   - Total searchable pages: 18 (up from 17)
+
+Store & Router Updates:
+- Added `help-support` to B2CScreen type
+- Registered help-support screen in router
+- Added screen title "پشتیبانی"
+
+Dashboard Enhancements:
+- Added SecurityCenterWidget after ReferralProgramWidget
+- Added "پشتیبانی و راهنما" link button at the end
+- Dashboard now has 26 sections/widgets total:
+  1-24. (existing widgets)
+  25. **NEW** Security center widget
+  26. **NEW** Help & support link
+
+Styling Improvements:
+- Security center: success-colored shield with pulsing ring, animated score bar with shimmer, color-coded status items
+- Help & support: Tejarat Blue gradient header, 4-column contact grid, 2-column quick links, accordion FAQ with animated chevron
+- Contact form: bottom sheet modal with subject + message fields
+- All new features use staggered framer-motion animations
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser:
+  - SecurityCenterWidget: "مرکز امنیت" heading displays with ۸۰٪ score and 5 security items
+  - HelpSupportScreen: "پشتیبانی" heading displays with 4 contact methods, 4 quick links, FAQ search, 8 questions across 6 categories
+  - FAQ accordion expands/collapses correctly
+  - No runtime errors, no console errors
+
+Stage Summary:
+- Added 2 new features: SecurityCenterWidget, HelpSupportScreen
+- Added 1 new screen (help-support) + 1 new dashboard widget + help link
+- Enhanced global search with help-support entry
+- Dashboard now has 26 sections — a comprehensive, secure, supportive financial dashboard
+- All new features tested and working
+- Lint clean, no errors
+- Total screens: 40 B2C + 10 B2B = 50 screens

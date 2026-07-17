@@ -22,6 +22,7 @@ import {
   Trophy,
   Coins,
   PieChart,
+  HelpCircle,
   X,
   CornerDownLeft,
 } from "lucide-react";
@@ -79,6 +80,7 @@ export function GlobalSearch() {
       { id: "nav-achievements", title: "دستاوردها", subtitle: "نشان‌ها و افتخارات", icon: Trophy, category: "صفحات", action: () => setB2CScreen("achievements") },
       { id: "nav-currency", title: "تبدیل ارز", subtitle: "نرخ ارز، طلا و کریپتو", icon: Coins, category: "صفحات", action: () => setB2CScreen("currency-converter") },
       { id: "nav-spending", title: "دسته‌بندی هزینه‌ها", subtitle: "تحلیل هزینه‌های ماهانه", icon: PieChart, category: "صفحات", action: () => setB2CScreen("spending-categories") },
+      { id: "nav-help", title: "پشتیبانی و راهنما", subtitle: "سوالات متداول، تماس", icon: HelpCircle, category: "صفحات", action: () => setB2CScreen("help-support") },
     ];
 
     // Services

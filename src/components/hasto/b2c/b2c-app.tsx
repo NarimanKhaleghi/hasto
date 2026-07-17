@@ -36,6 +36,7 @@ import { SavingsGoalsScreen } from "@/components/hasto/b2c/screens/savings-goals
 import { AchievementsScreen } from "@/components/hasto/b2c/screens/achievements";
 import { CurrencyConverterScreen } from "@/components/hasto/b2c/screens/currency-converter";
 import { SpendingCategoriesScreen } from "@/components/hasto/b2c/screens/spending-categories";
+import { HelpSupportScreen } from "@/components/hasto/b2c/screens/help-support";
 import { Onboarding } from "@/components/hasto/shared/onboarding";
 
 const screens: Record<string, React.ComponentType> = {
@@ -68,6 +69,7 @@ const screens: Record<string, React.ComponentType> = {
   achievements: AchievementsScreen,
   "currency-converter": CurrencyConverterScreen,
   "spending-categories": SpendingCategoriesScreen,
+  "help-support": HelpSupportScreen,
 };
 
 const noChromeScreens = ["login", "transfer-pin", "transfer-receipt", "payment-pin", "payment-receipt"];
@@ -131,6 +133,7 @@ function getScreenTitle(screen: string): string | undefined {
     achievements: "دستاوردها",
     "currency-converter": "تبدیل ارز",
     "spending-categories": "دسته‌بندی هزینه‌ها",
+    "help-support": "پشتیبانی",
   };
   return titles[screen];
 }
