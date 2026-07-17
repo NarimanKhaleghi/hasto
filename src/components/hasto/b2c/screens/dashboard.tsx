@@ -17,6 +17,7 @@ import { QuickStatsBar } from "@/components/hasto/shared/quick-stats-bar";
 import { IncomeExpenseComparison } from "@/components/hasto/shared/income-expense-comparison";
 import { SmartNotificationsWidget } from "@/components/hasto/shared/smart-notifications";
 import { FinancialTipsCard } from "@/components/hasto/shared/financial-tips-card";
+import { DailyStreakWidget } from "@/components/hasto/shared/daily-streak-widget";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -337,6 +338,11 @@ export function DashboardScreen() {
       {/* Achievements Preview */}
       <div className="px-4 mb-4">
         <AchievementsPreview />
+      </div>
+
+      {/* Daily Streak Widget */}
+      <div className="px-4 mb-4">
+        <DailyStreakWidget />
       </div>
 
       {/* Weekly Activity Chart */}
