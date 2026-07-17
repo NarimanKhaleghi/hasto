@@ -1000,3 +1000,95 @@ Stage Summary:
 - All new features tested and working
 - Lint clean, no errors
 - Total screens: 39 B2C + 10 B2B = 49 screens (unchanged, added widgets not screens)
+
+---
+Task ID: CRON-REVIEW-6
+Agent: Cron webDevReview
+Task: QA testing and new feature development (Smart Notifications, Financial Tips)
+
+Work Log:
+- Reviewed worklog.md — project stable with 49 screens + 23 features from previous reviews
+- Performed comprehensive QA with agent-browser:
+  - Login flow → working
+  - Dashboard with all 19 widgets → working
+  - Contracts screen → working (22 contracts, 5 types)
+  - Financial management → working (4 tabs, 3 charts)
+  - No runtime errors, no console errors
+
+New Features Added (2 new features):
+
+1. **Smart Notifications Widget** (`shared/smart-notifications.tsx`)
+   - Dashboard widget showing context-aware smart alerts
+   - Generates alerts dynamically from data:
+     - Urgent: pending bills count + total amount
+     - Info: next installment due date + amount
+     - Info: upcoming subscription payment
+     - Success: unread notifications count
+   - Color-coded by type (red urgent, amber info, green success)
+   - Pulsing badge on bell icon for urgent alerts
+   - Action buttons that navigate to relevant screens
+   - Staggered entrance animations
+   
+2. **Financial Tips Card** (`shared/financial-tips-card.tsx`)
+   - Rotating financial tips with 6 different tips:
+     - قانون ۵۰/۳۰/۲۰ (savings)
+     - احراز هویت دو مرحله‌ای (security)
+     - بودجه‌بندی هفتگی (spending)
+     - تنوع‌بخشی دارایی (investment)
+     - پس‌انداز خودکار (savings)
+     - قانون ۲۴ ساعته (spending)
+   - Gradient backgrounds (different per tip category)
+   - "نکته بعدی" button to cycle through tips
+   - Dismiss button (X) to hide the card
+   - Dot indicators showing current tip
+   - Tip changes every minute (time-based selection)
+   - Animated entrance and exit
+
+Dashboard Enhancements:
+- Added SmartNotificationsWidget after bills alert
+- Added FinancialTipsCard after IncomeExpenseComparison
+- Dashboard now has 21 sections/widgets total:
+  1. Time greeting + onboarding + calendar buttons
+  2. Quick stats bar (4 clickable stats)
+  3. Mother wallet card
+  4. واریز/دریافت buttons
+  5. Quick actions (5 buttons)
+  6. Bills alert
+  7. **NEW** Smart notifications widget
+  8. Quick repeat transfer
+  9. Financial health score
+  10. Spending insights
+  11. Spending limit widget
+  12. Savings goals preview
+  13. Achievements preview
+  14. Weekly activity chart
+  15. Activity heatmap
+  16. Market prices preview
+  17. Spending categories preview
+  18. Income vs expense comparison
+  19. **NEW** Financial tips card
+  20. Recent transactions
+  21. Active installments
+
+Styling Improvements:
+- Smart notifications: color-coded alert rows with icons, pulsing badge, action buttons
+- Financial tips: gradient backgrounds per category, dismiss button, dot indicators, cycling animation
+- Both widgets use staggered framer-motion entrance animations
+- Consistent with Tejarat Blue design language and semantic colors
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser:
+  - SmartNotificationsWidget: "اعلان‌های هوشمند" heading displays, action buttons navigate to correct screens
+  - FinancialTipsCard: "نکته مالی روز" displays with tip title (احراز هویت دو مرحله‌ای → بودجه‌بندی هفتگی after cycling)
+  - "نکته بعدی" button works - cycles through tips
+  - No runtime errors, no console errors
+
+Stage Summary:
+- Added 2 new features: SmartNotificationsWidget, FinancialTipsCard
+- Added 2 new dashboard widgets (smart notifications, financial tips)
+- Dashboard now has 21 sections — a comprehensive, intelligent financial dashboard
+- All new features tested and working
+- Lint clean, no errors
+- Total screens: 39 B2C + 10 B2B = 49 screens (unchanged, added widgets not screens)

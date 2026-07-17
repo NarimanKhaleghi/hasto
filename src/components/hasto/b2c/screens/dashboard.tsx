@@ -15,6 +15,8 @@ import { MarketPricesPreview } from "@/components/hasto/shared/market-prices-pre
 import { SpendingCategoriesPreview } from "@/components/hasto/shared/spending-categories-preview";
 import { QuickStatsBar } from "@/components/hasto/shared/quick-stats-bar";
 import { IncomeExpenseComparison } from "@/components/hasto/shared/income-expense-comparison";
+import { SmartNotificationsWidget } from "@/components/hasto/shared/smart-notifications";
+import { FinancialTipsCard } from "@/components/hasto/shared/financial-tips-card";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -264,6 +266,11 @@ export function DashboardScreen() {
         </div>
       </div>
 
+      {/* Smart Notifications Widget */}
+      <div className="px-4 mb-4">
+        <SmartNotificationsWidget />
+      </div>
+
       {/* Quick repeat transfer */}
       <div className="px-4 mb-4">
         <div className="flex items-center justify-between mb-2">
@@ -355,6 +362,11 @@ export function DashboardScreen() {
       {/* Income vs Expense Comparison */}
       <div className="px-4 mb-4">
         <IncomeExpenseComparison />
+      </div>
+
+      {/* Financial Tips Card */}
+      <div className="px-4 mb-4">
+        <FinancialTipsCard />
       </div>
 
       {/* Recent transactions */}
