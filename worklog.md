@@ -1354,3 +1354,80 @@ Stage Summary:
 - All new features tested and working
 - Lint clean, no errors
 - Total screens: 40 B2C + 10 B2B = 50 screens
+
+---
+Task ID: CRON-REVIEW-10
+Agent: Cron webDevReview
+Task: QA testing and new feature development (App Lock, Language Settings)
+
+Work Log:
+- Reviewed worklog.md — project stable with 50 screens + 31 features from previous reviews
+- Performed comprehensive QA with agent-browser:
+  - Login flow → working
+  - Dashboard with all 26 widgets → working
+  - Notifications screen → working (6 notifications with filters)
+  - No runtime errors, no console errors
+
+New Features Added (2 new screens):
+
+1. **App Lock / PIN Setup Screen** (`b2c/screens/app-lock.tsx`)
+   - Full screen for managing app security
+   - Biometric toggle (اثر انگشت / چهره) with animated switch
+   - Auto-lock timer options (فوری، ۱ دقیقه، ۵ دقیقه)
+   - 3-step PIN setup wizard:
+     - Step 1: رمز فعلی (current PIN entry)
+     - Step 2: رمز جدید (new PIN entry)
+     - Step 3: تایید رمز (confirm new PIN)
+     - Success animation on completion
+   - 6-digit PIN entry with custom number pad (Persian digits)
+   - PIN dots with animated fill and error states
+   - Error handling: mismatched PINs show red animation + message
+   - Delete button for correcting input
+   - Security tip banner
+   - Gradient header (indigo)
+   
+2. **Language Settings Screen** (`b2c/screens/language-settings.tsx`)
+   - Full screen for language and regional settings
+   - Language selection (5 languages):
+     - فارسی (Persian) 🇮🇷 RTL
+     - انگلیسی (English) 🇬🇧 LTR
+     - عربی (Arabic) 🇸🇦 RTL
+     - ترکی (Turkish) 🇹🇷 LTR
+     - کردی (Kurdish) 🏳️ RTL
+   - Number format toggle (فارسی ۱۲۳۴۵۶۷۸۹۰ / انگلیسی 1234567890)
+   - Date format selection (شمسی / میلادی / قمری)
+   - Font size preference (عادی / بزرگ / خیلی بزرگ)
+   - Toast notifications on all changes
+   - Info banner explaining changes
+   - Gradient header (sky blue)
+
+3. **Enhanced Global Search**
+   - Added 2 new navigation entries: قفل برنامه، زبان و منطقه
+   - Total searchable pages: 20 (up from 18)
+
+Store & Router Updates:
+- Added `app-lock` and `language-settings` to B2CScreen type
+- Registered both screens in router
+- Added screen titles: "قفل برنامه"، "زبان و منطقه"
+
+Styling Improvements:
+- App lock: indigo gradient header, animated PIN dots, custom number pad with Persian digits, spring animations on checkmark
+- Language settings: sky blue gradient header, flag emojis, direction badges (RTL/LTR), sample previews for each format
+- Both use staggered framer-motion entrance animations
+- Consistent with Tejarat Blue design language
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser:
+  - AppLockScreen: "قفل برنامه" heading displays with biometric toggle, auto-lock options, PIN entry number pad
+  - LanguageSettingsScreen: "زبان و منطقه" heading displays with 5 languages, number format, date format, font size options
+  - Global search finds and navigates to both new screens
+  - No runtime errors, no console errors
+
+Stage Summary:
+- Added 2 new screens: AppLockScreen, LanguageSettingsScreen
+- Enhanced global search with 2 new entries
+- All new features tested and working
+- Lint clean, no errors
+- Total screens: 42 B2C + 10 B2B = 52 screens

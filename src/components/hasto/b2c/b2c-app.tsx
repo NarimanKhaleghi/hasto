@@ -37,6 +37,8 @@ import { AchievementsScreen } from "@/components/hasto/b2c/screens/achievements"
 import { CurrencyConverterScreen } from "@/components/hasto/b2c/screens/currency-converter";
 import { SpendingCategoriesScreen } from "@/components/hasto/b2c/screens/spending-categories";
 import { HelpSupportScreen } from "@/components/hasto/b2c/screens/help-support";
+import { AppLockScreen } from "@/components/hasto/b2c/screens/app-lock";
+import { LanguageSettingsScreen } from "@/components/hasto/b2c/screens/language-settings";
 import { Onboarding } from "@/components/hasto/shared/onboarding";
 
 const screens: Record<string, React.ComponentType> = {
@@ -70,6 +72,8 @@ const screens: Record<string, React.ComponentType> = {
   "currency-converter": CurrencyConverterScreen,
   "spending-categories": SpendingCategoriesScreen,
   "help-support": HelpSupportScreen,
+  "app-lock": AppLockScreen,
+  "language-settings": LanguageSettingsScreen,
 };
 
 const noChromeScreens = ["login", "transfer-pin", "transfer-receipt", "payment-pin", "payment-receipt"];
@@ -134,6 +138,8 @@ function getScreenTitle(screen: string): string | undefined {
     "currency-converter": "تبدیل ارز",
     "spending-categories": "دسته‌بندی هزینه‌ها",
     "help-support": "پشتیبانی",
+    "app-lock": "قفل برنامه",
+    "language-settings": "زبان و منطقه",
   };
   return titles[screen];
 }

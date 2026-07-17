@@ -38,7 +38,9 @@ export type B2CScreen =
   | "achievements"
   | "currency-converter"
   | "spending-categories"
-  | "help-support";
+  | "help-support"
+  | "app-lock"
+  | "language-settings";
 
 // ==================== B2B Screens ====================
 export type B2BScreen =

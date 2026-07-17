@@ -23,6 +23,8 @@ import {
   Coins,
   PieChart,
   HelpCircle,
+  Lock,
+  Languages,
   X,
   CornerDownLeft,
 } from "lucide-react";
@@ -81,6 +83,8 @@ export function GlobalSearch() {
       { id: "nav-currency", title: "تبدیل ارز", subtitle: "نرخ ارز، طلا و کریپتو", icon: Coins, category: "صفحات", action: () => setB2CScreen("currency-converter") },
       { id: "nav-spending", title: "دسته‌بندی هزینه‌ها", subtitle: "تحلیل هزینه‌های ماهانه", icon: PieChart, category: "صفحات", action: () => setB2CScreen("spending-categories") },
       { id: "nav-help", title: "پشتیبانی و راهنما", subtitle: "سوالات متداول، تماس", icon: HelpCircle, category: "صفحات", action: () => setB2CScreen("help-support") },
+      { id: "nav-applock", title: "قفل برنامه", subtitle: "تنظیمات امنیتی PIN", icon: Lock, category: "صفحات", action: () => setB2CScreen("app-lock") },
+      { id: "nav-language", title: "زبان و منطقه", subtitle: "زبان، فرمت اعداد و تاریخ", icon: Languages, category: "صفحات", action: () => setB2CScreen("language-settings") },
     ];
 
     // Services
