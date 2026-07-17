@@ -18,6 +18,8 @@ import { IncomeExpenseComparison } from "@/components/hasto/shared/income-expens
 import { SmartNotificationsWidget } from "@/components/hasto/shared/smart-notifications";
 import { FinancialTipsCard } from "@/components/hasto/shared/financial-tips-card";
 import { DailyStreakWidget } from "@/components/hasto/shared/daily-streak-widget";
+import { MonthlyOverviewWidget } from "@/components/hasto/shared/monthly-overview-widget";
+import { ReferralProgramWidget } from "@/components/hasto/shared/referral-program-widget";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -345,6 +347,11 @@ export function DashboardScreen() {
         <DailyStreakWidget />
       </div>
 
+      {/* Monthly Overview Widget */}
+      <div className="px-4 mb-4">
+        <MonthlyOverviewWidget />
+      </div>
+
       {/* Weekly Activity Chart */}
       <div className="px-4 mb-4">
         <WeeklyActivityChart />
@@ -462,6 +469,11 @@ export function DashboardScreen() {
             ))}
           </div>
         </SectionCard>
+      </div>
+
+      {/* Referral Program Widget */}
+      <div className="px-4 mt-4">
+        <ReferralProgramWidget />
       </div>
 
       {/* Wallet Detail Sheet */}

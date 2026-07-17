@@ -1179,3 +1179,96 @@ Stage Summary:
 - All new features tested and working
 - Lint clean, no errors
 - Total screens: 39 B2C + 10 B2B = 49 screens (unchanged, added widgets not screens)
+
+---
+Task ID: CRON-REVIEW-8
+Agent: Cron webDevReview
+Task: QA testing and new feature development (Monthly Overview, Referral Program)
+
+Work Log:
+- Reviewed worklog.md — project stable with 49 screens + 27 features from previous reviews
+- Performed comprehensive QA with agent-browser:
+  - Login flow → working
+  - Dashboard with all 22 widgets → working
+  - Dark mode → working (tested toggle)
+  - Profile screen → working (5 settings sections)
+  - Savings goals screen → working (4 goals displayed)
+  - No runtime errors, no console errors
+
+New Features Added (2 new features):
+
+1. **Monthly Overview Widget** (`shared/monthly-overview-widget.tsx`)
+   - Compact monthly summary with mini calendar grid
+   - 3 summary stats: درآمد (income), هزینه (expense), خالص (net) with month-over-month change %
+   - Mini calendar (31 days) with color-coded days:
+     - Green: income days
+     - Red: expense days
+     - Ring: today (day 25)
+     - Faded: future days
+   - Legend at bottom
+   - "تقویم" button linking to full calendar screen
+   - Staggered day cell animations
+   - Uses cashFlowData for monthly stats
+   
+2. **Referral Program Widget** (`shared/referral-program-widget.tsx`)
+   - Gradient card (indigo → purple → pink) with rotating gift icon
+   - Referral code display (HASTO-ALI1405) with copy button
+   - Progress bar to next reward (7/10 invitations)
+   - Earned amount badge (۳۵۰,۰۰۰ تومان)
+   - Share button (navigator.share with clipboard fallback)
+   - Invited friends count button
+   - Reward info: ۵۰,۰۰۰ تومان per referral
+   - Shimmer effect on progress bar
+   - Toast notifications on copy/share
+
+Dashboard Enhancements:
+- Added MonthlyOverviewWidget after DailyStreakWidget
+- Added ReferralProgramWidget at the end (after active installments)
+- Dashboard now has 24 sections/widgets total:
+  1. Time greeting + onboarding + calendar buttons
+  2. Quick stats bar (4 clickable stats)
+  3. Mother wallet card
+  4. واریز/دریافت buttons
+  5. Quick actions (5 buttons)
+  6. Bills alert
+  7. Smart notifications widget
+  8. Quick repeat transfer
+  9. Financial health score
+  10. Spending insights
+  11. Spending limit widget
+  12. Savings goals preview
+  13. Achievements preview
+  14. Daily streak widget
+  15. **NEW** Monthly overview widget
+  16. Weekly activity chart
+  17. Activity heatmap
+  18. Market prices preview
+  19. Spending categories preview
+  20. Income vs expense comparison
+  21. Financial tips card
+  22. Recent transactions
+  23. Active installments
+  24. **NEW** Referral program widget
+
+Styling Improvements:
+- Monthly overview: 3-column stats grid with colored backgrounds, mini calendar with color-coded days, ring indicator for today
+- Referral: indigo-purple-pink gradient, rotating gift icon, shimmer progress bar, backdrop blur on code display
+- Both widgets use staggered framer-motion entrance animations
+- Consistent with Tejarat Blue design language and glassmorphism
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser:
+  - MonthlyOverviewWidget: "خلاصه ماه" heading displays with 3 stats and mini calendar
+  - ReferralProgramWidget: "دعوت دوستان" heading displays with referral code and progress
+  - Copy button works: "لینک دعوت کپی شد!" toast appears
+  - No runtime errors, no console errors
+
+Stage Summary:
+- Added 2 new features: MonthlyOverviewWidget, ReferralProgramWidget
+- Added 2 new dashboard widgets (monthly overview, referral program)
+- Dashboard now has 24 sections — a comprehensive, gamified financial dashboard with social features
+- All new features tested and working
+- Lint clean, no errors
+- Total screens: 39 B2C + 10 B2B = 49 screens (unchanged, added widgets not screens)
