@@ -32,7 +32,8 @@ export type B2CScreen =
   | "transactions"
   | "profile"
   | "notifications"
-  | "wallet-detail";
+  | "wallet-detail"
+  | "calendar";
 
 // ==================== B2B Screens ====================
 export type B2BScreen =

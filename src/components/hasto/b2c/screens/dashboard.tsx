@@ -1,8 +1,11 @@
 "use client";
 
 import { useAppStore } from "@/lib/hasto-store";
-import { user, transactions, bills, installments, banks, fa } from "@/lib/hasto-data";
+import { user, transactions, bills, installments, banks, recentTransfers, fa, parseFa } from "@/lib/hasto-data";
 import { SectionCard } from "@/components/hasto/shared/ui";
+import { FinancialHealthScore } from "@/components/hasto/shared/financial-health-score";
+import { SpendingInsights } from "@/components/hasto/shared/spending-insights";
+import { TimeGreeting } from "@/components/hasto/shared/time-greeting";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -21,6 +24,9 @@ import {
   Copy,
   Check,
   Shield,
+  Calendar as CalendarIcon,
+  RotateCw,
+  Sparkles,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -43,6 +49,18 @@ export function DashboardScreen() {
 
   return (
     <div className="pb-4">
+      {/* Time-based greeting */}
+      <div className="px-4 pt-4 pb-2 flex items-center justify-between">
+        <TimeGreeting />
+        <button
+          onClick={() => setB2CScreen("calendar")}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-border text-xs font-medium hover:bg-accent transition-colors"
+        >
+          <CalendarIcon className="w-3.5 h-3.5 text-[#034ea2] dark:text-[#6BA0F5]" />
+          تقویم
+        </button>
+      </div>
+
       {/* Mother Wallet Card */}
       <div className="p-4 pt-4">
         <motion.div
@@ -176,12 +194,13 @@ export function DashboardScreen() {
       </div>
 
       {/* Quick actions row */}
-      <div className="px-4 mb-4 grid grid-cols-4 gap-2">
+      <div className="px-4 mb-4 grid grid-cols-5 gap-2">
         {[
           { icon: Zap, label: "قبض", screen: "bills" as const, color: "#F59E0B" },
           { icon: QrCode, label: "پرداخت", screen: "payment" as const, color: "#034ea2" },
           { icon: CreditCard, label: "اقساط", screen: "installments" as const, color: "#8B5CF6" },
           { icon: Shield, label: "قراردادها", screen: "contracts" as const, color: "#16a34a" },
+          { icon: CalendarIcon, label: "تقویم", screen: "calendar" as const, color: "#EC4899" },
         ].map((item) => (
           <button
             key={item.label}
@@ -208,7 +227,7 @@ export function DashboardScreen() {
           <div className="flex-1 min-w-0">
             <p className="text-sm font-bold">قبوض پرداخت نشده</p>
             <p className="text-xs text-muted-foreground">
-              {fa(bills.length)} قبض در انتظار پرداخت — مجموع {fa(bills.reduce((s, b) => s + parseInt(b.amount.replace(/,/g, "")), 0).toLocaleString())} تومان
+              {fa(bills.length)} قبض در انتظار پرداخت — مجموع {fa(bills.reduce((s, b) => s + parseFa(b.amount), 0).toLocaleString())} تومان
             </p>
           </div>
           <button
@@ -218,6 +237,59 @@ export function DashboardScreen() {
             پرداخت
           </button>
         </div>
+      </div>
+
+      {/* Quick repeat transfer */}
+      <div className="px-4 mb-4">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="font-bold text-sm flex items-center gap-1.5">
+            <RotateCw className="w-3.5 h-3.5 text-[#034ea2] dark:text-[#6BA0F5]" />
+            انتقال سریع
+          </h3>
+          <button
+            onClick={() => setB2CScreen("transfer")}
+            className="text-[11px] text-muted-foreground hover:text-foreground"
+          >
+            همه مخاطبین
+          </button>
+        </div>
+        <div className="flex gap-3 overflow-x-auto scrollbar-none pb-1">
+          {/* Add new contact */}
+          <button
+            onClick={() => setB2CScreen("transfer")}
+            className="flex flex-col items-center gap-1.5 shrink-0 w-16"
+          >
+            <div className="w-12 h-12 rounded-full border-2 border-dashed border-border flex items-center justify-center hover:border-[#034ea2] dark:hover:border-[#6BA0F5] transition-colors">
+              <Plus className="w-5 h-5 text-muted-foreground" />
+            </div>
+            <span className="text-[10px] text-muted-foreground">جدید</span>
+          </button>
+          {recentTransfers.slice(0, 6).map((t) => (
+            <button
+              key={t.id}
+              onClick={() => {
+                setB2CScreen("transfer");
+                toast.info(`انتقال به ${t.name}`);
+              }}
+              className="flex flex-col items-center gap-1.5 shrink-0 w-16 group"
+            >
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#034ea2] to-[#023069] flex items-center justify-center text-white font-bold text-sm shadow-md group-hover:scale-105 transition-transform">
+                {t.name.charAt(0)}
+              </div>
+              <span className="text-[10px] font-medium truncate w-full text-center">{t.name.split(" ")[0]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Financial Health Score */}
+      <div className="px-4 mb-4">
+        <FinancialHealthScore />
+      </div>
+
+      {/* Spending Insights */}
+      <div className="px-4 mb-4">
+        <SpendingInsights />
       </div>
 
       {/* Recent transactions */}

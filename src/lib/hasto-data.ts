@@ -7,6 +7,18 @@ export const fa = (n: string | number): string => {
   return String(n).replace(/\d/g, (d) => faDigits[parseInt(d)]);
 };
 
+// Convert Persian/Arabic digits to English and parse as number
+export const parseFa = (s: string): number => {
+  if (!s) return 0;
+  const en = s
+    .replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)))
+    .replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)))
+    .replace(/,/g, "")
+    .replace(/[^\d-]/g, "");
+  const n = parseInt(en);
+  return isNaN(n) ? 0 : n;
+};
+
 export const formatToman = (n: number): string => {
   return fa(n.toLocaleString("en-US"));
 };

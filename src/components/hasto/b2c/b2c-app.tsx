@@ -3,6 +3,7 @@
 import { useAppStore } from "@/lib/hasto-store";
 import { Header } from "@/components/hasto/shared/header";
 import { BottomNav } from "@/components/hasto/shared/bottom-nav";
+import { GlobalSearch } from "@/components/hasto/shared/global-search";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 // B2C Screens
@@ -30,6 +31,7 @@ import { TransactionsScreen } from "@/components/hasto/b2c/screens/transactions"
 import { ProfileScreen } from "@/components/hasto/b2c/screens/profile";
 import { NotificationsScreen } from "@/components/hasto/b2c/screens/notifications";
 import { WalletDetailScreen } from "@/components/hasto/b2c/screens/wallet-detail";
+import { CalendarScreen } from "@/components/hasto/b2c/screens/calendar";
 
 const screens: Record<string, React.ComponentType> = {
   login: LoginScreen,
@@ -56,6 +58,7 @@ const screens: Record<string, React.ComponentType> = {
   profile: ProfileScreen,
   notifications: NotificationsScreen,
   "wallet-detail": WalletDetailScreen,
+  calendar: CalendarScreen,
 };
 
 const noChromeScreens = ["login", "transfer-pin", "transfer-receipt", "payment-pin", "payment-receipt"];
@@ -76,7 +79,7 @@ export function B2CApp() {
   }
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
+    <div className="flex-1 flex flex-col overflow-hidden relative">
       {!noChrome && <Header title={getScreenTitle(b2cScreen)} />}
       <ScrollArea className="flex-1">
         <div key={b2cScreen} className="animate-fade-in">
@@ -84,6 +87,7 @@ export function B2CApp() {
         </div>
       </ScrollArea>
       {!noChrome && <BottomNav />}
+      {!noChrome && <GlobalSearch />}
     </div>
   );
 }
@@ -112,6 +116,7 @@ function getScreenTitle(screen: string): string | undefined {
     profile: "پروفایل",
     notifications: "اعلان‌ها",
     "wallet-detail": "کیف پول مادر",
+    calendar: "تقویم پرداخت",
   };
   return titles[screen];
 }

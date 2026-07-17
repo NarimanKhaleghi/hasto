@@ -481,3 +481,104 @@ Stage Summary:
 - ✅ QA verified via agent-browser
 
 Project Status: COMPLETE — production-ready demo MVP for board presentation
+
+---
+Task ID: CRON-REVIEW-1
+Agent: Cron webDevReview
+Task: QA testing, bug fixes, and new feature development
+
+Work Log:
+- Reviewed worklog.md to understand project status (all 35 screens built, stable)
+- Performed comprehensive QA with agent-browser:
+  - Tested login flow (phone + OTP) → working
+  - Tested dashboard → working
+  - Tested contracts screen → all 22 contracts rendering correctly
+  - Tested contract-create wizard (4 steps) → working, BNPL providers including "تارا" (CreditCard icon) render correctly — the previously reported "CreditCard is not defined" error was already fixed
+  - Tested transfer screen → working
+  - Tested B2B mode (dashboard, tools) → working
+  - Tested financial management (4 tabs, 3 charts) → working
+  - Tested services (18 categories) → working
+  - No runtime errors, no console errors on all tested screens
+
+Bugs Found & Fixed:
+1. **Persian digit parsing bug** — Multiple components used `parseInt()` on Persian digit strings (e.g., "۲۹۹,۰۰۰"), which returns NaN. This caused the FinancialHealthScore and SpendingInsights components to crash on the dashboard.
+   - Fix: Added `parseFa()` helper function to `/home/z/my-project/src/lib/hasto-data.ts` that converts Persian/Arabic digits to English before parsing
+   - Fixed all affected files: `dashboard.tsx` (bill total calculation), `spending-insights.tsx` (bills total + subscription cost), `calendar.tsx` (monthly payments total)
+2. **TimeGreeting setState in effect** — Lint error for calling setState directly in useEffect
+   - Fix: Refactored to use `useMemo` for time-based greeting calculation instead of state
+
+New Features Added:
+1. **AnimatedNumber component** (`/src/components/hasto/shared/animated-number.tsx`)
+   - Smooth count-up animation with easeOutExpo easing
+   - Used in Financial Health Score and Calendar for animated number displays
+   
+2. **Financial Health Score** (`/src/components/hasto/shared/financial-health-score.tsx`)
+   - Gamified widget showing financial health 0-100 score
+   - Animated circular progress ring (SVG with framer-motion)
+   - Score calculated from: balance (40pts), debt ratio (30pts), receivables (20pts), savings (10pts)
+   - 4 score levels: عالی (80+), خوب (60+), متوسط (40+), نیاز به توجه (<40)
+   - Shows net worth, total debt, and personalized tips
+   
+3. **Spending Insights** (`/src/components/hasto/shared/spending-insights.tsx`)
+   - AI-style smart insights card with gradient background
+   - 4 dynamic insights: upcoming bills, next installment, spending trend, subscription costs
+   - Color-coded insight types: warning, positive, info, tip
+   
+4. **Time-based Greeting** (`/src/components/hasto/shared/time-greeting.tsx`)
+   - Shows greeting based on time of day: صبح بخیر (morning), ظهر بخیر (noon), عصر بخیر (afternoon), شب بخیر (night)
+   - Color-coded icons for each time period
+   
+5. **Quick Repeat Transfer** (added to dashboard)
+   - Horizontal scrollable row of recent transfer contacts
+   - Avatar circles with first letter initial
+   - "جدید" (New) button with dashed border for adding new contact
+   - One-tap access to transfer flow
+   
+6. **Global Search Command Palette** (`/src/components/hasto/shared/global-search.tsx`)
+   - Cmd+K / Ctrl+K keyboard shortcut to open
+   - Searches across: pages (12 nav items), services (120+ from 18 categories), contracts (10), contacts (6)
+   - Grouped results by category with icons
+   - Keyboard navigation: ↑↓ to navigate, Enter to select, Esc to close
+   - Floating search button visible on all screens
+   
+7. **Calendar Screen** (`/src/components/hasto/b2c/screens/calendar.tsx`)
+   - New screen showing upcoming payments in calendar view
+   - Month navigation (فروردین تا اسفند)
+   - Calendar grid with event dots (color-coded by type)
+   - Today highlighted with ring
+   - Summary card showing total monthly payments + event count + average
+   - Upcoming events list with date, icon, title, amount
+   - Accessible from dashboard header ("تقویم" button) and quick actions row
+
+8. **Dashboard Enhancements**
+   - Added time-based greeting at top
+   - Added calendar access button in header
+   - Expanded quick actions from 4 to 5 (added Calendar)
+   - Added Quick Repeat Transfer section with horizontal contact scroll
+   - Added Financial Health Score widget
+   - Added Spending Insights card
+
+Styling Improvements:
+- New animated counter component with smooth easing
+- Gradient backgrounds on insights card (Tejarat Blue to dark)
+- Circular progress ring with SVG animation
+- Color-coded event dots on calendar
+- Glassmorphism search modal with backdrop blur
+- Keyboard shortcut hints in search footer
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser: dashboard renders with all new components (Financial Health Score, Spending Insights, Quick Transfer, Calendar link, Global Search)
+- Calendar screen tested: month grid renders, events display correctly
+- Global Search tested: searches "قبض" returns pages + services results correctly
+- No runtime errors, no console errors
+
+Stage Summary:
+- Fixed critical Persian digit parsing bug that crashed dashboard
+- Added 7 new features: AnimatedNumber, FinancialHealthScore, SpendingInsights, TimeGreeting, QuickRepeatTransfer, GlobalSearch, CalendarScreen
+- All new features tested and working
+- Lint clean, no errors
+- Dashboard is now significantly richer with health score, insights, quick transfer, and calendar
+- Global search provides app-wide navigation with keyboard shortcut
+- Calendar provides visual overview of upcoming payments
