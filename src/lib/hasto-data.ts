@@ -1056,3 +1056,270 @@ export const cryptoPrices = [
   { name: "ریپل", symbol: "XRP", price: 32000, change: -0.8, trend: "down" as const, icon: "✕", color: "#23292F" },
   { name: "لایت‌کوین", symbol: "LTC", price: 8200000, change: 2.2, trend: "up" as const, icon: "Ł", color: "#345D9D" },
 ];
+
+// ==================== Spending Categories (detailed breakdown) ====================
+export type SpendingCategory = {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+  amount: number;
+  amountText: string;
+  percentage: number;
+  transactionCount: number;
+  trend: number; // % change vs last month
+  trendDirection: "up" | "down";
+  subcategories: { name: string; amount: number; amountText: string }[];
+};
+
+export const spendingCategories: SpendingCategory[] = [
+  {
+    id: "CAT-1",
+    name: "خوراک و رستوران",
+    icon: "🍔",
+    color: "#034ea2",
+    amount: 3200000,
+    amountText: "۳,۲۰۰,۰۰۰",
+    percentage: 28,
+    transactionCount: 18,
+    trend: 12,
+    trendDirection: "up",
+    subcategories: [
+      { name: "رستوران", amount: 1800000, amountText: "۱,۸۰۰,۰۰۰" },
+      { name: "فست‌فود", amount: 900000, amountText: "۹۰۰,۰۰۰" },
+      { name: "سوپرمارکت", amount: 500000, amountText: "۵۰۰,۰۰۰" },
+    ],
+  },
+  {
+    id: "CAT-2",
+    name: "قبوض و خدمات",
+    icon: "⚡",
+    color: "#F59E0B",
+    amount: 2500000,
+    amountText: "۲,۵۰۰,۰۰۰",
+    percentage: 22,
+    transactionCount: 8,
+    trend: -5,
+    trendDirection: "down",
+    subcategories: [
+      { name: "قبض برق", amount: 850000, amountText: "۸۵۰,۰۰۰" },
+      { name: "قبض گاز", amount: 650000, amountText: "۶۵۰,۰۰۰" },
+      { name: "قبض آب", amount: 350000, amountText: "۳۵۰,۰۰۰" },
+      { name: "اینترنت", amount: 650000, amountText: "۶۵۰,۰۰۰" },
+    ],
+  },
+  {
+    id: "CAT-3",
+    name: "اقساط و وام",
+    icon: "💳",
+    color: "#EF4444",
+    amount: 2900000,
+    amountText: "۲,۹۰۰,۰۰۰",
+    percentage: 25,
+    transactionCount: 5,
+    trend: 0,
+    trendDirection: "down",
+    subcategories: [
+      { name: "اسنپ‌پی", amount: 400000, amountText: "۴۰۰,۰۰۰" },
+      { name: "دیجی‌پی", amount: 500000, amountText: "۵۰۰,۰۰۰" },
+      { name: "وام تجارت", amount: 2000000, amountText: "۲,۰۰۰,۰۰۰" },
+    ],
+  },
+  {
+    id: "CAT-4",
+    name: "حمل‌ونقل",
+    icon: "🚗",
+    color: "#8B5CF6",
+    amount: 1200000,
+    amountText: "۱,۲۰۰,۰۰۰",
+    percentage: 10,
+    transactionCount: 12,
+    trend: 8,
+    trendDirection: "up",
+    subcategories: [
+      { name: "اسنپ", amount: 700000, amountText: "۷۰۰,۰۰۰" },
+      { name: "بنزین", amount: 500000, amountText: "۵۰۰,۰۰۰" },
+    ],
+  },
+  {
+    id: "CAT-5",
+    name: "خرید و خرید",
+    icon: "🛍️",
+    color: "#EC4899",
+    amount: 1100000,
+    amountText: "۱,۱۰۰,۰۰۰",
+    percentage: 10,
+    transactionCount: 7,
+    trend: 15,
+    trendDirection: "up",
+    subcategories: [
+      { name: "پوشاک", amount: 600000, amountText: "۶۰۰,۰۰۰" },
+      { name: "لوازم خانگی", amount: 500000, amountText: "۵۰۰,۰۰۰" },
+    ],
+  },
+  {
+    id: "CAT-6",
+    name: "سرگرمی",
+    icon: "🎬",
+    color: "#06B6D4",
+    amount: 550000,
+    amountText: "۵۵۰,۰۰۰",
+    percentage: 5,
+    transactionCount: 4,
+    trend: -3,
+    trendDirection: "down",
+    subcategories: [
+      { name: "فیلیمو", amount: 249000, amountText: "۲۴۹,۰۰۰" },
+      { name: "نماوا", amount: 199000, amountText: "۱۹۹,۰۰۰" },
+      { name: "اسنپ‌پرو", amount: 102000, amountText: "۱۰۲,۰۰۰" },
+    ],
+  },
+];
+
+export const totalSpending = spendingCategories.reduce((s, c) => s + c.amount, 0);
+
+// ==================== Onboarding Steps ====================
+export type OnboardingStep = {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+  highlights: string[];
+};
+
+export const onboardingSteps: OnboardingStep[] = [
+  {
+    id: 1,
+    title: "به هستو خوش آمدید",
+    description: "هسته پرداخت ایران — یک کارت، همه پرداخت‌ها. هستو به شما کمک می‌کند تمام پرداخت‌های خود را یکجا مدیریت کنید.",
+    icon: "👋",
+    color: "#034ea2",
+    highlights: ["کیف پول مادر یکپارچه", "مدیریت تمام کارت‌های بانکی", "پرداخت‌های هوشمند"],
+  },
+  {
+    id: 2,
+    title: "کیف پول مادر",
+    description: "موجودی کیف پول مادر خود را در داشبورد ببینید. تمام پرداخت‌ها از این کیف پول انجام می‌شود و در صورت کمبود موجودی، به‌طور خودکار از بانک‌های متصل شارژ می‌شود.",
+    icon: "💰",
+    color: "#16a34a",
+    highlights: ["شارژ خودکار از بانک‌ها", "یک کارت جای همه کارت‌ها", "مدیریت آسان موجودی"],
+  },
+  {
+    id: 3,
+    title: "واریز و دریافت",
+    description: "با دو دکمه ساده واریز و دریافت، به‌راحتی پول بفرستید و دریافت کنید. شماره موبایل گیرنده، شناسه کیف پول اوست.",
+    icon: "🔄",
+    color: "#F59E0B",
+    highlights: ["تشخیص خودکار نوع شماره", "انتقال سریع با موبایل", "QR کد اختصاصی"],
+  },
+  {
+    id: 4,
+    title: "۴ روش پرداخت",
+    description: "با شناسه واریز، اسکن QR، NFC یا پرداخت نزدیک (بر اساس لوکیشن)، به فروشگاه‌های اطراف خود پرداخت کنید.",
+    icon: "💳",
+    color: "#8B5CF6",
+    highlights: ["شناسه واریز", "اسکن QR فروشگاه‌ها", "پرداخت NFC", "فروشگاه‌های نزدیک"],
+  },
+  {
+    id: 5,
+    title: "مدیریت مالی هوشمند",
+    description: "دارایی‌های نقدی و غیرنقدی، بدهی‌ها و طلب‌های خود را در یکجا ببینید. نمودارهای تحلیلی به شما کمک می‌کنند تصمیمات بهتری بگیرید.",
+    icon: "📊",
+    color: "#EC4899",
+    highlights: ["دارایی‌های غیرنقدی", "بدهی‌ها و طلب‌ها", "نمودارهای تحلیلی"],
+  },
+  {
+    id: 6,
+    title: "قراردادهای هوشمند",
+    description: "تمام قراردادهای Direct Debit، BNPL، اشتراک‌ها و پرداخت‌های خودکار خود را مدیریت کنید. قراردادهای شخصی بسازید و با دیگران به اشتراک بگذارید.",
+    icon: "📜",
+    color: "#06B6D4",
+    highlights: ["Direct Debit چند بانکه", "BNPL متمرکز", "قراردادهای شخصی"],
+  },
+];
+
+// ==================== Transaction Detail (enhanced) ====================
+export type TransactionDetail = {
+  id: string;
+  type: string;
+  title: string;
+  amount: number;
+  amountText: string;
+  date: string;
+  time: string;
+  status: "success" | "pending" | "failed";
+  trackingNumber: string;
+  description: string;
+  category: string;
+  categoryIcon: string;
+  categoryColor: string;
+  recipient: {
+    name: string;
+    account: string;
+    bank?: string;
+  };
+  fee: number;
+  feeText: string;
+  paymentMethod: string;
+};
+
+export const transactionDetails: Record<string, TransactionDetail> = {
+  TX1: {
+    id: "TX1",
+    type: "withdraw",
+    title: "انتقال وجه",
+    amount: 250000,
+    amountText: "۲۵۰,۰۰۰",
+    date: "۱۴۰۵/۰۴/۲۵",
+    time: "۱۴:۳۰",
+    status: "success",
+    trackingNumber: "TRK-8X9K2M5N",
+    description: "بازپرداخت وام",
+    category: "انتقال",
+    categoryIcon: "↗",
+    categoryColor: "#034ea2",
+    recipient: { name: "رضا کریمی", account: "09123456789", bank: "کیف پول هستو" },
+    fee: 0,
+    feeText: "رایگان",
+    paymentMethod: "کیف پول مادر",
+  },
+  TX2: {
+    id: "TX2",
+    type: "receive",
+    title: "دریافت وجه",
+    amount: 1500000,
+    amountText: "۱,۵۰۰,۰۰۰",
+    date: "۱۴۰۵/۰۴/۲۵",
+    time: "۱۲:۱۵",
+    status: "success",
+    trackingNumber: "TRK-3B5N8P2Q",
+    description: "پرداخت اجاره",
+    category: "دریافت",
+    categoryIcon: "↙",
+    categoryColor: "#16a34a",
+    recipient: { name: "مریم احمدی", account: "09351112233", bank: "کیف پول هستو" },
+    fee: 0,
+    feeText: "رایگان",
+    paymentMethod: "کیف پول مادر",
+  },
+  TX3: {
+    id: "TX3",
+    type: "charge",
+    title: "شارژ کیف پول",
+    amount: 5000000,
+    amountText: "۵,۰۰۰,۰۰۰",
+    date: "۱۴۰۵/۰۴/۲۴",
+    time: "۲۰:۴۵",
+    status: "success",
+    trackingNumber: "TRK-7K2M9X4L",
+    description: "شارژ خودکار از بلو بانک",
+    category: "شارژ",
+    categoryIcon: "⚡",
+    categoryColor: "#F59E0B",
+    recipient: { name: "بلو بانک", account: "۶۲۷۹-۶۱", bank: "بلو بانک" },
+    fee: 0,
+    feeText: "رایگان",
+    paymentMethod: "Direct Debit",
+  },
+};

@@ -35,6 +35,8 @@ import { CalendarScreen } from "@/components/hasto/b2c/screens/calendar";
 import { SavingsGoalsScreen } from "@/components/hasto/b2c/screens/savings-goals";
 import { AchievementsScreen } from "@/components/hasto/b2c/screens/achievements";
 import { CurrencyConverterScreen } from "@/components/hasto/b2c/screens/currency-converter";
+import { SpendingCategoriesScreen } from "@/components/hasto/b2c/screens/spending-categories";
+import { Onboarding } from "@/components/hasto/shared/onboarding";
 
 const screens: Record<string, React.ComponentType> = {
   login: LoginScreen,
@@ -65,6 +67,7 @@ const screens: Record<string, React.ComponentType> = {
   "savings-goals": SavingsGoalsScreen,
   achievements: AchievementsScreen,
   "currency-converter": CurrencyConverterScreen,
+  "spending-categories": SpendingCategoriesScreen,
 };
 
 const noChromeScreens = ["login", "transfer-pin", "transfer-receipt", "payment-pin", "payment-receipt"];
@@ -94,6 +97,7 @@ export function B2CApp() {
       </ScrollArea>
       {!noChrome && <BottomNav />}
       {!noChrome && <GlobalSearch />}
+      <Onboarding />
     </div>
   );
 }
@@ -126,6 +130,7 @@ function getScreenTitle(screen: string): string | undefined {
     "savings-goals": "اهداف پس‌انداز",
     achievements: "دستاوردها",
     "currency-converter": "تبدیل ارز",
+    "spending-categories": "دسته‌بندی هزینه‌ها",
   };
   return titles[screen];
 }

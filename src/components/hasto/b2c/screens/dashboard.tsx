@@ -12,6 +12,7 @@ import { AchievementsPreview } from "@/components/hasto/shared/achievements-prev
 import { ActivityHeatmap } from "@/components/hasto/shared/activity-heatmap";
 import { WeeklyActivityChart } from "@/components/hasto/shared/weekly-activity-chart";
 import { MarketPricesPreview } from "@/components/hasto/shared/market-prices-preview";
+import { SpendingCategoriesPreview } from "@/components/hasto/shared/spending-categories-preview";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -40,6 +41,7 @@ import { toast } from "sonner";
 
 export function DashboardScreen() {
   const setB2CScreen = useAppStore((s) => s.setB2CScreen);
+  const setShowOnboarding = useAppStore((s) => s.setShowOnboarding);
   const [showBalance, setShowBalance] = useState(true);
   const [showWalletDetail, setShowWalletDetail] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
@@ -58,13 +60,23 @@ export function DashboardScreen() {
       {/* Time-based greeting */}
       <div className="px-4 pt-4 pb-2 flex items-center justify-between">
         <TimeGreeting />
-        <button
-          onClick={() => setB2CScreen("calendar")}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-border text-xs font-medium hover:bg-accent transition-colors"
-        >
-          <CalendarIcon className="w-3.5 h-3.5 text-[#034ea2] dark:text-[#6BA0F5]" />
-          تقویم
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowOnboarding(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-l from-[#034ea2]/10 to-[#6BA0F5]/10 border border-[#034ea2]/20 text-xs font-medium text-[#034ea2] dark:text-[#6BA0F5] hover:from-[#034ea2]/20 hover:to-[#6BA0F5]/20 transition-colors"
+            aria-label="تور راهنما"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            تور راهنما
+          </button>
+          <button
+            onClick={() => setB2CScreen("calendar")}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-border text-xs font-medium hover:bg-accent transition-colors"
+          >
+            <CalendarIcon className="w-3.5 h-3.5 text-[#034ea2] dark:text-[#6BA0F5]" />
+            تقویم
+          </button>
+        </div>
       </div>
 
       {/* Mother Wallet Card */}
@@ -326,6 +338,11 @@ export function DashboardScreen() {
       {/* Market Prices Preview */}
       <div className="px-4 mb-4">
         <MarketPricesPreview />
+      </div>
+
+      {/* Spending Categories Preview */}
+      <div className="px-4 mb-4">
+        <SpendingCategoriesPreview />
       </div>
 
       {/* Recent transactions */}

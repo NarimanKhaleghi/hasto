@@ -21,6 +21,7 @@ import {
   Target,
   Trophy,
   Coins,
+  PieChart,
   X,
   CornerDownLeft,
 } from "lucide-react";
@@ -77,6 +78,7 @@ export function GlobalSearch() {
       { id: "nav-savings", title: "اهداف پس‌انداز", subtitle: "مدیریت اهداف مالی", icon: Target, category: "صفحات", action: () => setB2CScreen("savings-goals") },
       { id: "nav-achievements", title: "دستاوردها", subtitle: "نشان‌ها و افتخارات", icon: Trophy, category: "صفحات", action: () => setB2CScreen("achievements") },
       { id: "nav-currency", title: "تبدیل ارز", subtitle: "نرخ ارز، طلا و کریپتو", icon: Coins, category: "صفحات", action: () => setB2CScreen("currency-converter") },
+      { id: "nav-spending", title: "دسته‌بندی هزینه‌ها", subtitle: "تحلیل هزینه‌های ماهانه", icon: PieChart, category: "صفحات", action: () => setB2CScreen("spending-categories") },
     ];
 
     // Services

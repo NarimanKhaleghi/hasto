@@ -809,3 +809,101 @@ Stage Summary:
 - Lint clean, no errors
 - Dashboard is now a comprehensive financial dashboard with activity tracking, market data, and currency conversion
 - Total screens: 38 B2C + 10 B2B = 48 screens
+
+---
+Task ID: CRON-REVIEW-4
+Agent: Cron webDevReview
+Task: QA testing and new feature development (Onboarding, Spending Categories)
+
+Work Log:
+- Reviewed worklog.md — project stable with 48 screens + 16 features from previous reviews
+- Performed comprehensive QA with agent-browser:
+  - Login flow → working
+  - Dashboard with all widgets → working
+  - B2B mode → working
+  - Services screen → working
+  - No runtime errors, no console errors
+
+New Features Added (4 new features + 1 new screen):
+
+1. **Onboarding Tour** (`shared/onboarding.tsx`)
+   - 6-step interactive onboarding wizard for new users
+   - Steps: Welcome → Mother Wallet → Transfer/Receive → Payment Methods → Financial Management → Smart Contracts
+   - Animated step icons with spring rotation
+   - Progress bar at top with gradient color
+   - Step indicator (۱/۶)
+   - Skip button (top-left)
+   - Dots navigation (clickable)
+   - Previous/Next buttons
+   - Highlights list with checkmarks per step
+   - "شروع استفاده" CTA on last step
+   - Slide transitions between steps (AnimatePresence)
+   - Triggered from dashboard "تور راهنما" button
+   - State managed in Zustand store (showOnboarding, onboardingStep)
+
+2. **Spending Categories Screen** (`b2c/screens/spending-categories.tsx`)
+   - Full screen with 6 spending categories (خوراک، قبوض، اقساط، حمل‌ونقل، خرید، سرگرمی)
+   - Summary card with gradient (purple) showing total spending
+   - Mini donut chart (SVG) with category breakdown
+   - Category legend (top 4)
+   - View toggle (list/pie)
+   - Category cards with: icon, name, percentage badge, transaction count, amount, trend indicator, progress bar
+   - Category detail modal with: large icon, percentage, amount, trend, subcategories list, budget setup button
+   - Insight banner highlighting top spending category
+   - Animated entrance and progress bars
+
+3. **Spending Categories Preview Widget** (`shared/spending-categories-preview.tsx`)
+   - Dashboard widget showing spending breakdown summary
+   - Total spending amount (animated)
+   - Horizontal stacked bar chart (all categories)
+   - Top 3 categories list with icons, percentages, amounts
+   - "جزئیات" button linking to full screen
+
+4. **Enhanced Global Search**
+   - Added "دسته‌بندی هزینه‌ها" navigation entry
+   - Total searchable pages: 17 (up from 16)
+
+Mock Data Added:
+- `spendingCategories` (6 categories with subcategories, trends, transaction counts)
+- `totalSpending` computed total
+- `onboardingSteps` (6 steps with title, description, icon, color, highlights)
+- `transactionDetails` (enhanced transaction detail with recipient, fee, payment method, tracking number)
+
+Store Updates:
+- Added `showOnboarding`, `onboardingStep` state
+- Added `setShowOnboarding`, `setOnboardingStep`, `completeOnboarding` actions
+- Added `spending-categories` to B2CScreen type
+- Registered spending-categories screen in router
+
+Dashboard Enhancements:
+- Added "تور راهنما" button next to calendar in greeting section
+- Added SpendingCategoriesPreview widget after MarketPricesPreview
+- Dashboard now has 17 sections/widgets total
+
+Bug Fixed:
+- Lint error in spending-categories.tsx: `react-hooks/immutability` for reassigning `offset` variable inside map callback
+  - Fix: Refactored to use pure `reduce` that computes cumulative offsets upfront, then maps over the segments array
+
+Styling Improvements:
+- Onboarding: gradient step icons with spring rotation, progress bar, slide transitions
+- Spending categories: purple gradient summary, SVG donut chart, horizontal stacked bar, color-coded categories
+- Category detail: large icon, animated progress ring, subcategory list
+- "تور راهنما" button with gradient background and sparkle icon
+
+Verification:
+- `bun run lint`: ✅ clean (exit 0, no errors, no warnings)
+- `curl http://localhost:3000/`: ✅ HTTP 200
+- QA verified via agent-browser:
+  - Onboarding tour: opens from "تور راهنما" button, navigates through steps, skip works
+  - Spending Categories screen: all 6 categories display, donut chart renders, category detail modal opens with subcategories
+  - Global Search finds "دسته‌بندی هزینه‌ها" and navigates correctly
+  - No runtime errors, no console errors
+
+Stage Summary:
+- Added 4 new features: Onboarding, SpendingCategoriesScreen, SpendingCategoriesPreview, enhanced search
+- Added 1 new screen (spending-categories) + 1 new dashboard widget + onboarding system
+- Added 4 new mock data exports (spendingCategories, onboardingSteps, transactionDetails, totalSpending)
+- Fixed lint error (immutability in reduce)
+- All new features tested and working
+- Lint clean, no errors
+- Total screens: 39 B2C + 10 B2B = 49 screens

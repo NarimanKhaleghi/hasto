@@ -36,7 +36,8 @@ export type B2CScreen =
   | "calendar"
   | "savings-goals"
   | "achievements"
-  | "currency-converter";
+  | "currency-converter"
+  | "spending-categories";
 
 // ==================== B2B Screens ====================
 export type B2BScreen =
@@ -100,6 +101,13 @@ type AppState = {
   // Phone frame toggle (desktop preview)
   phoneFrame: boolean;
   setPhoneFrame: (v: boolean) => void;
+
+  // Onboarding
+  showOnboarding: boolean;
+  onboardingStep: number;
+  setShowOnboarding: (v: boolean) => void;
+  setOnboardingStep: (v: number) => void;
+  completeOnboarding: () => void;
 };
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -161,4 +169,10 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   phoneFrame: true,
   setPhoneFrame: (v) => set({ phoneFrame: v }),
+
+  showOnboarding: false,
+  onboardingStep: 0,
+  setShowOnboarding: (v) => set({ showOnboarding: v, onboardingStep: v ? 0 : 0 }),
+  setOnboardingStep: (v) => set({ onboardingStep: v }),
+  completeOnboarding: () => set({ showOnboarding: false, onboardingStep: 0 }),
 }));
