@@ -11,7 +11,7 @@
 - Single-page app (only `/` route) with Zustand store managing screen navigation
 - Mock data only (no backend)
 - Phone-frame wrapper on desktop, full-screen on mobile
-- Mode switcher: B2C (user app) ↔ B2B (business panel)
+- Mode switcher: B2C (user app) ↔ B2B  (business panel)
 
 ---
 
