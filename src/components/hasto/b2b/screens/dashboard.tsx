@@ -206,7 +206,7 @@ export function B2BDashboardScreen() {
 
       {/* Quick Actions */}
       <div className="px-4 mt-4">
-        <SectionCard title="دسترسی سریع" icon={Wrench}>
+        <SectionCard title="دسترسی سریع" icon={Landmark}>
           <div className="grid grid-cols-4 gap-2">
             {quickActions.map((action) => (
               <button
