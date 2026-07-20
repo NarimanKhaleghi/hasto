@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  basePath: "/hasto",
   turbopack: { root: "./" },
   output: "export",
   images: { unoptimized: true },
