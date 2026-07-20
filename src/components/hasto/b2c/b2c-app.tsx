@@ -39,6 +39,8 @@ import { SpendingCategoriesScreen } from "@/components/hasto/b2c/screens/spendin
 import { HelpSupportScreen } from "@/components/hasto/b2c/screens/help-support";
 import { AppLockScreen } from "@/components/hasto/b2c/screens/app-lock";
 import { LanguageSettingsScreen } from "@/components/hasto/b2c/screens/language-settings";
+import { PaymentPinScreen } from "@/components/hasto/b2c/screens/payment-pin";
+import { PaymentReceiptScreen } from "@/components/hasto/b2c/screens/payment-receipt";
 import { Onboarding } from "@/components/hasto/shared/onboarding";
 
 const screens: Record<string, React.ComponentType> = {
@@ -74,6 +76,8 @@ const screens: Record<string, React.ComponentType> = {
   "help-support": HelpSupportScreen,
   "app-lock": AppLockScreen,
   "language-settings": LanguageSettingsScreen,
+  "payment-pin": PaymentPinScreen,
+  "payment-receipt": PaymentReceiptScreen,
 };
 
 const noChromeScreens = ["login", "transfer-pin", "transfer-receipt", "payment-pin", "payment-receipt"];
@@ -96,8 +100,8 @@ export function B2CApp() {
   return (
     <div className="flex-1 flex flex-col overflow-hidden relative">
       {!noChrome && <Header title={getScreenTitle(b2cScreen)} />}
-      <ScrollArea className="flex-1">
-        <div key={b2cScreen} className="animate-fade-in">
+      <ScrollArea className="flex-1 min-h-0">
+        <div key={b2cScreen} className="animate-fade-in pb-20">
           <Screen />
         </div>
       </ScrollArea>

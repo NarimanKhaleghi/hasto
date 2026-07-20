@@ -355,7 +355,7 @@ function ShareSheet({
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[420px] z-50 rounded-t-3xl bg-card border-t border-border shadow-2xl pb-6"
+            className="fixed bottom-0 left-0 right-0 w-full max-w-[420px] mx-auto z-50 rounded-t-3xl bg-card border-t border-border shadow-2xl pb-6"
           >
             <div className="pt-3 flex justify-center">
               <div className="w-10 h-1.5 rounded-full bg-muted" />

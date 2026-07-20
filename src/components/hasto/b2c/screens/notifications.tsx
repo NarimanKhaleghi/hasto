@@ -228,7 +228,7 @@ function NotifCard({
       )}
       style={
         !n.read
-          ? { borderRightWidth: "3px", borderRightColor: n.color }
+          ? { borderLeftWidth: "3px", borderLeftColor: n.color }
           : undefined
       }
     >

@@ -151,6 +151,7 @@
   }
   html {
     direction: rtl;
+    overflow-x: hidden;
   }
   body {
     @apply bg-background text-foreground;
@@ -356,9 +357,10 @@
 }
 
 /* ==================== Persian Number Font Fix ==================== */
-input[type="text"],
+/* Only apply LTR to numeric/phone inputs, not general text inputs */
 input[type="tel"],
-input[type="number"] {
+input[type="number"],
+input.persian-number {
   font-feature-settings: "ss01" on, "ss02" on;
   direction: ltr;
   text-align: right;

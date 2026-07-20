@@ -316,7 +316,7 @@ export function TransferScreen() {
       </div>
 
       {/* Floating action buttons: Scan + Confirm */}
-      <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3 max-w-[420px] w-full px-4">
+      <div className="sticky bottom-20 z-30 flex items-center gap-3 max-w-[420px] w-full px-4 mx-auto justify-center">
         <motion.button
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

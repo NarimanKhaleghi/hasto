@@ -144,7 +144,7 @@ export function PaymentNearbyScreen() {
           <div className="absolute bottom-2 right-2 left-2 flex items-center gap-1.5 bg-white/80 dark:bg-black/50 backdrop-blur-sm rounded-lg px-2 py-1">
             <MapPin className="w-3 h-3 text-[#034ea2] dark:text-[#6BA0F5] shrink-0" />
             <span className="text-[10px] font-medium truncate">موقعیت فعلی شما</span>
-            <span className="text-[10px] text-muted-foreground mr-auto"> Tehran</span>
+            <span className="text-[10px] text-muted-foreground ms-auto"> Tehran</span>
           </div>
         </motion.div>
       </div>

@@ -185,7 +185,7 @@ export function GlobalSearch() {
       <button
         onClick={() => setOpen(true)}
         aria-label="جستجوی سریع"
-        className="fixed bottom-24 right-4 z-30 w-11 h-11 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
+        className="absolute bottom-24 left-4 z-30 w-11 h-11 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
       >
         <Search className="w-5 h-5 text-[#034ea2] dark:text-[#6BA0F5]" />
       </button>

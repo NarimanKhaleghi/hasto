@@ -44,8 +44,8 @@ export function B2BApp() {
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <B2BHeader title={getB2BTitle(b2bScreen)} />
-      <ScrollArea className="flex-1">
-        <div key={b2bScreen} className="animate-fade-in">
+      <ScrollArea className="flex-1 min-h-0">
+        <div key={b2bScreen} className="animate-fade-in pb-20">
           <Screen />
         </div>
       </ScrollArea>

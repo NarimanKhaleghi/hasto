@@ -245,7 +245,7 @@ export function TransferConfirmScreen() {
       </div>
 
       {/* Balance + confirm bar */}
-      <div className="fixed bottom-16 left-1/2 -translate-x-1/2 z-30 max-w-[420px] w-full px-4 pb-3 pt-3 bg-gradient-to-t from-background via-background/95 to-transparent">
+      <div className="fixed bottom-16 left-0 right-0 z-30 max-w-[420px] w-full mx-auto px-4 pb-3 pt-3 bg-gradient-to-t from-background via-background/95 to-transparent">
         <div className="flex items-center justify-between mb-2 px-1">
           <span className="text-[11px] text-muted-foreground">موجودی کیف پول</span>
           <span className="text-xs font-bold tabular-nums">

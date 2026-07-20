@@ -56,7 +56,7 @@ export function SpendingLimitWidget() {
           className="text-2xl font-bold tabular-nums"
         />
         <span className="text-xs text-muted-foreground">
-          از {limit.toLocaleString("en-US")} تومان
+          از {fa(limit.toLocaleString("en-US"))} تومان
         </span>
       </div>
 
@@ -85,7 +85,7 @@ export function SpendingLimitWidget() {
           مصرف شده
         </span>
         <span className="text-muted-foreground">
-          باقیمانده: <span className="font-bold tabular-nums text-foreground">{fa(remaining.toLocaleString())}</span> تومان
+          باقیمانده: <span className="font-bold tabular-nums text-foreground">{fa(remaining.toLocaleString("en-US"))}</span> تومان
         </span>
       </div>
 
@@ -97,7 +97,7 @@ export function SpendingLimitWidget() {
           </div>
           <div>
             <p className="text-[9px] text-muted-foreground">میانگین روزانه</p>
-            <p className="text-xs font-bold tabular-nums">{fa(dailyAverage.toLocaleString())}</p>
+            <p className="text-xs font-bold tabular-nums">{fa(dailyAverage.toLocaleString("en-US"))}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -123,7 +123,7 @@ export function SpendingLimitWidget() {
           <p className="text-[10px] text-muted-foreground leading-relaxed">
             {isWarning
               ? "به سقف بودجه نزدیک شدید. مصرف خود را کنترل کنید."
-              : `روزانه حداکثر ${fa(Math.round(remaining / daysLeft).toLocaleString())} تومان می‌توانید خرج کنید.`}
+              : `روزانه حداکثر ${fa(Math.round(remaining / daysLeft).toLocaleString("en-US"))} تومان می‌توانید خرج کنید.`}
           </p>
         </div>
       )}

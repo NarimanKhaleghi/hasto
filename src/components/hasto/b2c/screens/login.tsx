@@ -86,7 +86,7 @@ export function LoginScreen() {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-gradient-to-b from-[#e8f0fe] via-[#f8fafc] to-white dark:from-[#0a0f1a] dark:via-[#0a0f1a] dark:to-[#111827] min-h-screen">
+    <div className="flex-1 flex flex-col bg-gradient-to-b from-[#e8f0fe] via-[#f8fafc] to-white dark:from-[#0a0f1a] dark:via-[#0a0f1a] dark:to-[#111827] h-full overflow-hidden">
       {/* Top brand section */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 pt-12 pb-8">
         <motion.div
@@ -148,7 +148,7 @@ export function LoginScreen() {
 
             {/* Phone input with 09 prefix */}
             <div className="relative">
-              <div className="flex items-stretch gap-2">
+              <div className="flex items-stretch gap-2 flex-row-reverse">
                 <div className="flex items-center px-4 rounded-2xl bg-muted border border-border">
                   <span className="text-lg font-bold text-muted-foreground tabular-nums">۰۹</span>
                 </div>
@@ -218,7 +218,7 @@ export function LoginScreen() {
 
             {/* OTP inputs */}
             <div
-              className="flex justify-center gap-2.5 mb-4"
+              className="flex justify-center gap-2.5 mb-4 direction-ltr"
               dir="ltr"
               onPaste={handleOtpPaste}
             >

@@ -214,7 +214,7 @@ export function ContractsScreen() {
         transition={{ delay: 0.3, type: "spring", stiffness: 280, damping: 22 }}
         onClick={() => setB2CScreen("contract-create")}
         aria-label="افزودن قرارداد جدید"
-        className="fixed bottom-24 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-5 h-12 rounded-full bg-gradient-to-br from-[#034ea2] to-[#023069] text-white shadow-lg shadow-[#034ea2]/40 transition-transform active:scale-95"
+        className="sticky bottom-20 z-30 flex items-center gap-2 px-5 h-12 rounded-full mx-auto w-fit bg-gradient-to-br from-[#034ea2] to-[#023069] text-white shadow-lg shadow-[#034ea2]/40 transition-transform active:scale-95"
       >
         <Plus className="w-5 h-5" />
         <span className="font-bold text-sm">افزودن قرارداد جدید</span>

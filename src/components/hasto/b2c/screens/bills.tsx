@@ -254,7 +254,7 @@ export function BillsScreen() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 80, opacity: 0 }}
             transition={{ type: "spring", damping: 22, stiffness: 280 }}
-            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-30 w-[calc(100%-2rem)] max-w-[402px]"
+            className="sticky bottom-20 z-30 w-[calc(100%-2rem)] max-w-[402px] mx-auto"
           >
             <button
               onClick={() => setConfirmAll(true)}

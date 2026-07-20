@@ -90,7 +90,7 @@ export function ServicesScreen() {
   const isSearching = normalizedQuery.length > 0;
 
   function handleServiceClick(svc: FlatService) {
-    toast.info(`${svc.name} — به زودی disponible`);
+    toast.info(`${svc.name} — به زودی موجود می‌شود`);
   }
 
   function clearSearch() {
@@ -294,7 +294,7 @@ function CategorySection({
           </span>
           <h3 className="font-bold text-sm text-foreground">{category.name}</h3>
           <span
-            className="mr-auto text-[10px] font-bold px-2 py-0.5 rounded-full"
+            className="ms-auto text-[10px] font-bold px-2 py-0.5 rounded-full"
             style={{
               background: hexToRgba(category.color, 0.12),
               color: category.color,

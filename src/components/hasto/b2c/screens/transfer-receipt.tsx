@@ -370,7 +370,7 @@ export function TransferReceiptScreen() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
           onClick={handleShare}
-          className="w-full h-13 py-3.5 rounded-2xl bg-gradient-to-l from-[#034ea2] to-[#0456B5] text-white font-bold shadow-lg shadow-[#034ea2]/25 flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
+          className="w-full h-14 py-3.5 rounded-2xl bg-gradient-to-l from-[#034ea2] to-[#0456B5] text-white font-bold shadow-lg shadow-[#034ea2]/25 flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
         >
           <Share2 className="w-5 h-5" />
           اشتراک‌گذاری رسید
@@ -380,7 +380,7 @@ export function TransferReceiptScreen() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.66 }}
           onClick={() => setB2CScreen("dashboard")}
-          className="w-full h-13 py-3.5 rounded-2xl bg-card border border-border text-foreground font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
+          className="w-full h-14 py-3.5 rounded-2xl bg-card border border-border text-foreground font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
         >
           <Home className="w-5 h-5" />
           بازگشت به خانه

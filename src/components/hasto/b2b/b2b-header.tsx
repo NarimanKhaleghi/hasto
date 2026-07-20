@@ -64,7 +64,7 @@ export function B2BHeader({ title }: { title?: string }) {
             aria-label="اعلان‌ها"
           >
             <Bell className="w-5 h-5" />
-            <span className="absolute top-1 left-1 w-2 h-2 rounded-full bg-destructive" />
+            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-destructive" />
           </button>
         </div>
       </div>

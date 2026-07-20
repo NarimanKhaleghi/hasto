@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { activityHeatmap, heatmapStats, fa } from "@/lib/hasto-data";
+import { useAppStore } from "@/lib/hasto-store";
 import { Activity, Flame, TrendingUp, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +28,8 @@ const weekLabels = ["۱۲ هفته پیش", "۹", "۶", "۳", "اکنون"];
 
 export function ActivityHeatmap() {
   const [hoveredCell, setHoveredCell] = useState<number | null>(null);
-  const isDark = typeof document !== "undefined" && document.documentElement.classList.contains("dark");
+  const theme = useAppStore((s) => s.theme);
+  const isDark = theme === "dark";
   const colors = isDark ? darkLevelColors : levelColors;
 
   // Group by week (12 columns)

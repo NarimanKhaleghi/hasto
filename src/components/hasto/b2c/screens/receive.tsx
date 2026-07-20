@@ -78,8 +78,8 @@ export function ReceiveScreen() {
                 <QRCodeSvg value={sharePayload} size={224} />
               </div>
               {/* Corner accents */}
-              <div className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-tr-3xl rounded-tl-md rounded-bl-md rounded-br-md border-t-4 border-r-4 border-[#034ea2]" />
-              <div className="absolute -bottom-1.5 -left-1.5 w-5 h-5 rounded-bl-3xl rounded-br-md rounded-tl-md rounded-tr-md border-b-4 border-l-4 border-[#034ea2]" />
+              <div className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-tr-3xl rounded-tl-md rounded-bl-md rounded-br-md border-t-4 border-s-4 border-[#034ea2]" />
+              <div className="absolute -bottom-1.5 -left-1.5 w-5 h-5 rounded-bl-3xl rounded-br-md rounded-tl-md rounded-tr-md border-b-4 border-e-4 border-[#034ea2]" />
             </motion.div>
 
             <p className="text-xs text-muted-foreground mt-5 text-center max-w-[240px] leading-relaxed">

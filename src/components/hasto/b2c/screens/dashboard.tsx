@@ -183,7 +183,7 @@ export function DashboardScreen() {
               <span className="text-white/60 text-[11px]">
                 {fa(connectedBanks.length)} بانک متصل با Direct Debit
               </span>
-              <div className="flex -space-x-1 mr-auto rtl:space-x-reverse">
+              <div className="flex -space-x-1 ms-auto rtl:space-x-reverse">
                 {connectedBanks.slice(0, 4).map((b) => (
                   <div
                     key={b.id}

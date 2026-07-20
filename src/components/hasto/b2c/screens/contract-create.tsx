@@ -245,7 +245,7 @@ export function ContractCreateScreen() {
   }
 
   return (
-    <div className="pb-28 px-4 pt-4">
+    <div className="px-4 pt-4">
       {/* Progress indicator */}
       <div className="mb-5">
         <div className="flex items-center justify-between mb-2">
@@ -326,7 +326,7 @@ export function ContractCreateScreen() {
       </AnimatePresence>
 
       {/* Footer actions */}
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[420px] px-4 pb-6 pt-3 bg-gradient-to-t from-background via-background/95 to-transparent z-30">
+      <div className="w-full px-4 pb-4 pt-3">
         <div className="flex gap-2.5">
           {step > 1 && (
             <button

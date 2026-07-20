@@ -151,7 +151,7 @@ export function SavingsGoalsScreen() {
       {/* Add new goal FAB */}
       <button
         onClick={() => setShowAddForm(true)}
-        className="fixed bottom-24 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-6 h-12 rounded-full bg-gradient-to-l from-[#16a34a] to-[#065f46] text-white shadow-lg shadow-[#16a34a]/30 active:scale-95 transition-transform"
+        className="sticky bottom-20 z-30 flex items-center gap-2 px-6 h-12 mx-auto w-fit rounded-full bg-gradient-to-l from-[#16a34a] to-[#065f46] text-white shadow-lg shadow-[#16a34a]/30 active:scale-95 transition-transform"
       >
         <Plus className="w-5 h-5" />
         <span className="font-bold text-sm">هدف جدید</span>
@@ -263,7 +263,7 @@ function GoalDetailSheet({ goal, onClose }: { goal: SavingsGoal; onClose: () => 
         <div className="flex items-center gap-2 p-3 rounded-xl bg-muted/50 mb-4">
           <Calendar className="w-4 h-4 text-muted-foreground" />
           <span className="text-xs text-muted-foreground">تاریخ سررسید:</span>
-          <span className="text-xs font-bold mr-auto">{goal.dueDate}</span>
+          <span className="text-xs font-bold ms-auto">{goal.dueDate}</span>
         </div>
 
         {/* Add savings input */}

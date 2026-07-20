@@ -171,7 +171,7 @@ export function Fab({
       onClick={onClick}
       aria-label={label}
       className={cn(
-        "fixed bottom-24 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-6 h-12 rounded-full shadow-lg transition-all active:scale-95",
+        "fixed bottom-24 left-0 right-0 z-30 flex items-center gap-2 px-6 h-12 rounded-full mx-auto w-fit shadow-lg transition-all active:scale-95",
         variant === "primary"
           ? "bg-gradient-to-br from-[#034ea2] to-[#023069] text-white shadow-glow"
           : "bg-card border border-border text-foreground"
