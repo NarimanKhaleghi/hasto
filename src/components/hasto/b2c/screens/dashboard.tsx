@@ -3,24 +3,7 @@
 import { useAppStore } from "@/lib/hasto-store";
 import { user, transactions, bills, installments, banks, recentTransfers, fa, parseFa } from "@/lib/hasto-data";
 import { SectionCard } from "@/components/hasto/shared/ui";
-import { FinancialHealthScore } from "@/components/hasto/shared/financial-health-score";
-import { SpendingInsights } from "@/components/hasto/shared/spending-insights";
-import { TimeGreeting } from "@/components/hasto/shared/time-greeting";
-import { SpendingLimitWidget } from "@/components/hasto/shared/spending-limit-widget";
-import { SavingsGoalsPreview } from "@/components/hasto/shared/savings-goals-preview";
-import { AchievementsPreview } from "@/components/hasto/shared/achievements-preview";
-import { ActivityHeatmap } from "@/components/hasto/shared/activity-heatmap";
-import { WeeklyActivityChart } from "@/components/hasto/shared/weekly-activity-chart";
-import { MarketPricesPreview } from "@/components/hasto/shared/market-prices-preview";
-import { SpendingCategoriesPreview } from "@/components/hasto/shared/spending-categories-preview";
-import { QuickStatsBar } from "@/components/hasto/shared/quick-stats-bar";
-import { IncomeExpenseComparison } from "@/components/hasto/shared/income-expense-comparison";
 import { SmartNotificationsWidget } from "@/components/hasto/shared/smart-notifications";
-import { FinancialTipsCard } from "@/components/hasto/shared/financial-tips-card";
-import { DailyStreakWidget } from "@/components/hasto/shared/daily-streak-widget";
-import { MonthlyOverviewWidget } from "@/components/hasto/shared/monthly-overview-widget";
-import { ReferralProgramWidget } from "@/components/hasto/shared/referral-program-widget";
-import { SecurityCenterWidget } from "@/components/hasto/shared/security-center-widget";
 import { motion } from "framer-motion";
 import {
   ArrowDownLeft,
@@ -66,32 +49,7 @@ export function DashboardScreen() {
 
   return (
     <div className="pb-4">
-      {/* Time-based greeting */}
-      <div className="px-4 pt-4 pb-2 flex items-center justify-between">
-        <TimeGreeting />
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setShowOnboarding(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-l from-[#034ea2]/10 to-[#6BA0F5]/10 border border-[#034ea2]/20 text-xs font-medium text-[#034ea2] dark:text-[#6BA0F5] hover:from-[#034ea2]/20 hover:to-[#6BA0F5]/20 transition-colors"
-            aria-label="تور راهنما"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            تور راهنما
-          </button>
-          <button
-            onClick={() => setB2CScreen("calendar")}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-border text-xs font-medium hover:bg-accent transition-colors"
-          >
-            <CalendarIcon className="w-3.5 h-3.5 text-[#034ea2] dark:text-[#6BA0F5]" />
-            تقویم
-          </button>
-        </div>
-      </div>
-
-      {/* Quick Stats Bar */}
-      <div className="px-4 mb-3">
-        <QuickStatsBar />
-      </div>
+      {/* Clean top - just wallet card */}
 
       {/* Mother Wallet Card */}
       <div className="p-4 pt-4">
@@ -115,7 +73,7 @@ export function DashboardScreen() {
             {/* Top row */}
             <div className="flex items-start justify-between mb-6">
               <div>
-                <p className="text-white/70 text-xs font-medium">کیف پول مادر</p>
+                <p className="text-white/70 text-xs font-medium">کیف پول مرکزی</p>
                 <p className="text-white/90 text-sm mt-0.5">{user.name}</p>
               </div>
               <div className="flex items-center gap-2">
@@ -319,70 +277,18 @@ export function DashboardScreen() {
         </div>
       </div>
 
-      {/* Financial Health Score */}
-      <div className="px-4 mb-4">
-        <FinancialHealthScore />
-      </div>
 
-      {/* Spending Insights */}
-      <div className="px-4 mb-4">
-        <SpendingInsights />
-      </div>
 
-      {/* Monthly Spending Limit Widget */}
-      <div className="px-4 mb-4">
-        <SpendingLimitWidget />
-      </div>
 
-      {/* Savings Goals Preview */}
-      <div className="px-4 mb-4">
-        <SavingsGoalsPreview />
-      </div>
 
-      {/* Achievements Preview */}
-      <div className="px-4 mb-4">
-        <AchievementsPreview />
-      </div>
 
-      {/* Daily Streak Widget */}
-      <div className="px-4 mb-4">
-        <DailyStreakWidget />
-      </div>
 
-      {/* Monthly Overview Widget */}
-      <div className="px-4 mb-4">
-        <MonthlyOverviewWidget />
-      </div>
 
-      {/* Weekly Activity Chart */}
-      <div className="px-4 mb-4">
-        <WeeklyActivityChart />
-      </div>
 
-      {/* Activity Heatmap */}
-      <div className="px-4 mb-4">
-        <ActivityHeatmap />
-      </div>
 
-      {/* Market Prices Preview */}
-      <div className="px-4 mb-4">
-        <MarketPricesPreview />
-      </div>
 
-      {/* Spending Categories Preview */}
-      <div className="px-4 mb-4">
-        <SpendingCategoriesPreview />
-      </div>
 
-      {/* Income vs Expense Comparison */}
-      <div className="px-4 mb-4">
-        <IncomeExpenseComparison />
-      </div>
 
-      {/* Financial Tips Card */}
-      <div className="px-4 mb-4">
-        <FinancialTipsCard />
-      </div>
 
       {/* Recent transactions */}
       <div className="px-4">
@@ -543,7 +449,7 @@ function WalletDetailSheet({
         <div className="w-12 h-1.5 bg-muted rounded-full mx-auto mb-4" />
 
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-bold text-lg">کیف پول مادر</h2>
+          <h2 className="font-bold text-lg">کیف پول مرکزی</h2>
           <button onClick={onClose} className="p-1.5 rounded-full hover:bg-muted">
             <ChevronLeft className="w-5 h-5 rotate-90" />
           </button>

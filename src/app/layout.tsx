@@ -12,8 +12,8 @@ const vazirmatn = Vazirmatn({
 });
 
 export const metadata: Metadata = {
-  title: "هستو — هسته پرداخت ایران",
-  description: "هستو، کیف پول مادر و هسته پرداخت مرکزی ایران. یک کارت، همه پرداخت‌ها.",
+  title: "هستو — هسته پرداخت ایران کیش",
+  description: "هستو، کیف پول مرکزی و هسته پرداخت مرکزی ایران. یک کارت، همه پرداخت‌ها.",
   keywords: ["هستو", "پرداخت", "کیف پول", "Direct Debit", "بانک تجارت", "Embedded Finance"],
   authors: [{ name: "Hasto Team" }],
   icons: {

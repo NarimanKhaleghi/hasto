@@ -246,6 +246,6 @@ function generateFallback(id: string): TransactionDetail {
     recipient: { name: "نامشخص", account: "—" },
     fee: 0,
     feeText: "رایگان",
-    paymentMethod: "کیف پول مادر",
+    paymentMethod: "کیف پول مرکزی",
   };
 }

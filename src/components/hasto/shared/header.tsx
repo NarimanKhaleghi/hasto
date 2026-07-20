@@ -15,7 +15,8 @@ export function Header({ title }: { title?: string }) {
   const b2cScreen = useAppStore((s) => s.b2cScreen);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
-  const showBack = b2cScreen !== "dashboard" && b2cScreen !== "login";
+  const mainPages = ["dashboard", "login", "financial", "services", "contracts", "payment"];
+  const showBack = !mainPages.includes(b2cScreen);
 
   return (
     <header className="sticky top-0 z-40 glass-strong border-b border-border/50">

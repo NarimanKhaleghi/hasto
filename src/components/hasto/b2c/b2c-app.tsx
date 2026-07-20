@@ -135,7 +135,7 @@ function getScreenTitle(screen: string): string | undefined {
     transactions: "تاریخچه تراکنش‌ها",
     profile: "پروفایل",
     notifications: "اعلان‌ها",
-    "wallet-detail": "کیف پول مادر",
+    "wallet-detail": "کیف پول مرکزی",
     calendar: "تقویم پرداخت",
     "savings-goals": "اهداف پس‌انداز",
     achievements: "دستاوردها",

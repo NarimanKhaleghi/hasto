@@ -102,7 +102,7 @@ export function LoginScreen() {
             هستو
           </h1>
           <p className="text-sm text-muted-foreground max-w-[240px]">
-            هسته پرداخت ایران — یک کارت، همه پرداخت‌ها
+            هسته پرداخت ایران کیش — یک کارت، همه پرداخت‌ها
           </p>
         </motion.div>
 

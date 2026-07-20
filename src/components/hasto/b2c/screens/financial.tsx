@@ -30,7 +30,7 @@ import {
   PieChart as PieChartIcon,
   LineChart as LineChartIcon,
   Receipt,
-  HandCoins,
+  HandCoins, LayoutDashboard,
   Landmark,
   CalendarDays,
   CheckCircle2,
@@ -67,9 +67,10 @@ import { SectionCard, ProgressBar } from "@/components/hasto/shared/ui";
 const PALETTE = ["#034ea2", "#16a34a", "#F59E0B", "#EF4444", "#8B5CF6"];
 
 // ==================== Tabs Config ====================
-type TabId = "cash" | "assets" | "debts" | "receivables";
+type TabId = "dashboard" | "cash" | "assets" | "debts" | "receivables";
 
 const TABS: { id: TabId; label: string; icon: typeof Wallet }[] = [
+  { id: "dashboard", label: "داشبورد", icon: LayoutDashboard },
   { id: "cash", label: "موجودی نقدی", icon: Wallet },
   { id: "assets", label: "دارایی‌ها", icon: TrendingUp },
   { id: "debts", label: "بدهی‌ها", icon: TrendingDown },
@@ -78,7 +79,7 @@ const TABS: { id: TabId; label: string; icon: typeof Wallet }[] = [
 
 // ==================== Main Screen ====================
 export function FinancialScreen() {
-  const [activeTab, setActiveTab] = useState<TabId>("cash");
+  const [activeTab, setActiveTab] = useState<TabId>("dashboard");
 
   return (
     <div className="pb-6">
@@ -124,6 +125,7 @@ export function FinancialScreen() {
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
         >
+          {activeTab === "dashboard" && <DashboardTab />}
           {activeTab === "cash" && <CashBalanceTab />}
           {activeTab === "assets" && <AssetsTab />}
           {activeTab === "debts" && <DebtsTab />}
@@ -301,7 +303,7 @@ function CashBalanceTab() {
               </div>
               <div>
                 <p className="text-white/70 text-xs">موجودی نقدی</p>
-                <p className="text-white/90 text-sm font-medium">کیف پول مادر هستو</p>
+                <p className="text-white/90 text-sm font-medium">کیف پول مرکزی هستو</p>
               </div>
             </div>
             <span className="px-2.5 py-1 rounded-full bg-white/15 text-white text-[11px] font-bold backdrop-blur-sm">
@@ -1491,5 +1493,123 @@ function AddReceivableSheet({ onClose }: { onClose: () => void }) {
         </button>
       </div>
     </SheetShell>
+  );
+}
+
+// ==================== Dashboard Tab ====================
+function DashboardTab() {
+  const setB2CScreen = useAppStore((s) => s.setB2CScreen);
+
+  return (
+    <div className="px-4 pt-4 space-y-4">
+      {/* Quick Stats Grid */}
+      <div className="grid grid-cols-2 gap-3">
+        {[
+          { label: "موجودی", value: formatToman(user.wallet.balance), icon: Wallet, color: "#034ea2", screen: "wallet-detail" as const },
+          { label: "پس‌انداز", value: formatToman(totalSavingsGoals), icon: Target, color: "#16a34a", screen: "savings-goals" as const },
+          { label: "طلب‌ها", value: formatToman(totalReceivables), icon: HandCoins, color: "#0EA5E9", screen: "financial" as const },
+          { label: "بدهی‌ها", value: formatToman(totalDebts), icon: TrendingDown, color: "#EF4444", screen: "financial" as const },
+        ].map((stat) => {
+          const Icon = stat.icon;
+          return (
+            <motion.button
+              key={stat.label}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setB2CScreen(stat.screen)}
+              className="p-4 rounded-2xl bg-card border border-border shadow-soft text-right"
+            >
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-2"
+                style={{ background: `${stat.color}15` }}>
+                <Icon className="w-4 h-4" style={{ color: stat.color }} />
+              </div>
+              <p className="text-[10px] text-muted-foreground mb-0.5">{stat.label}</p>
+              <p className="text-sm font-bold tabular-nums">{stat.value}</p>
+            </motion.button>
+          );
+        })}
+      </div>
+
+      {/* Financial Health Score */}
+      <SectionCard title="سلامت مالی" icon={Shield}>
+        <FinancialHealthScore />
+      </SectionCard>
+
+      {/* Spending Insights */}
+      <SectionCard title="تحلیل هوشمند هزینه‌ها" icon={Sparkles}>
+        <SpendingInsights />
+      </SectionCard>
+
+      {/* Spending Limit */}
+      <SectionCard title="بودجه ماهانه" icon={PieChart}>
+        <SpendingLimitWidget />
+      </SectionCard>
+
+      {/* Savings Goals */}
+      <SectionCard title="اهداف پس‌انداز" icon={Target}>
+        <SavingsGoalsPreview />
+      </SectionCard>
+
+      {/* Income vs Expense Chart */}
+      <SectionCard title="درآمد و هزینه" icon={BarChartIcon}>
+        <IncomeExpenseComparison />
+      </SectionCard>
+
+      {/* Spending Categories */}
+      <SectionCard title="دسته‌بندی هزینه‌ها" icon={PieChart}>
+        <SpendingCategoriesPreview />
+      </SectionCard>
+
+      {/* Balance Trend Chart */}
+      <SectionCard title="روند موجودی" icon={LineChartIcon}>
+        <div className="h-[200px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={balanceTrend}>
+              <defs>
+                <linearGradient id="balanceGradientDash" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#034ea2" stopOpacity={0.3} />
+                  <stop offset="100%" stopColor="#034ea2" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <XAxis dataKey="day" tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" />
+              <YAxis tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" tickFormatter={(v) => `${(v / 1000000).toFixed(0)}M`} />
+              <Tooltip content={<ChartTooltip />} />
+              <Area type="monotone" dataKey="balance" stroke="#034ea2" fill="url(#balanceGradientDash)" strokeWidth={2} name="موجودی" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </SectionCard>
+
+      {/* Achievements Preview */}
+      <SectionCard title="دستاوردها" icon={Trophy}>
+        <AchievementsPreview />
+      </SectionCard>
+
+      {/* Quick Actions */}
+      <div className="grid grid-cols-4 gap-2">
+        {[
+          { label: "پرداخت", icon: Zap, screen: "payment" as const, color: "#034ea2" },
+          { label: "قبض", icon: Receipt, screen: "bills" as const, color: "#F59E0B" },
+          { label: "تقویم", icon: CalendarIcon, screen: "calendar" as const, color: "#16a34a" },
+          { label: "ارز", icon: Coins, screen: "currency-converter" as const, color: "#8B5CF6" },
+        ].map((action) => {
+          const Icon = action.icon;
+          return (
+            <motion.button
+              key={action.label}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setB2CScreen(action.screen)}
+              className="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-card border border-border shadow-soft"
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center"
+                style={{ background: `${action.color}15` }}>
+                <Icon className="w-5 h-5" style={{ color: action.color }} />
+              </div>
+              <span className="text-[10px] font-bold">{action.label}</span>
+            </motion.button>
+          );
+        })}
+      </div>
+    </div>
   );
 }

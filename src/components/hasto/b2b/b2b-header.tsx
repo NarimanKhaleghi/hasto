@@ -12,7 +12,8 @@ export function B2BHeader({ title }: { title?: string }) {
   const b2bScreen = useAppStore((s) => s.b2bScreen);
   const setB2BScreen = useAppStore((s) => s.setB2BScreen);
 
-  const showBack = b2bScreen !== "b2b-dashboard";
+  const mainB2BPages = ["b2b-dashboard", "b2b-store", "b2b-financial", "b2b-contracts", "b2b-payment-link"];
+  const showBack = !mainB2BPages.includes(b2bScreen);
 
   return (
     <header className="sticky top-0 z-40 glass-strong border-b border-border/50">

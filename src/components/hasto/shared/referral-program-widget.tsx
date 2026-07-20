@@ -26,7 +26,7 @@ export function ReferralProgramWidget() {
   };
 
   const handleShare = () => {
-    const text = `به هستو بپیوندید! هسته پرداخت ایران. با کد دعوت من ثبت‌نام کنید: ${referralCode}\n${referralLink}`;
+    const text = `به هستو بپیوندید! هسته پرداخت ایران کیش. با کد دعوت من ثبت‌نام کنید: ${referralCode}\n${referralLink}`;
     if (navigator.share) {
       navigator.share({ title: "دعوت به هستو", text });
     } else {
