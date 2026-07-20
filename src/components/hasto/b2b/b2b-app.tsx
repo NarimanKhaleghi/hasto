@@ -9,10 +9,13 @@ import { B2BLoginScreen } from "@/components/hasto/b2b/screens/login";
 import { B2BVerifyScreen } from "@/components/hasto/b2b/screens/verify";
 import { B2BDashboardScreen } from "@/components/hasto/b2b/screens/dashboard";
 import { B2BPaymentLinkScreen } from "@/components/hasto/b2b/screens/payment-link";
-import { B2BProductsScreen } from "@/components/hasto/b2b/screens/products";
+import { B2BStoreScreen } from "@/components/hasto/b2b/screens/store";
 import { B2BProductAddScreen } from "@/components/hasto/b2b/screens/product-add";
 import { B2BContractsScreen } from "@/components/hasto/b2b/screens/contracts";
-import { B2BToolsScreen } from "@/components/hasto/b2b/screens/tools";
+import { B2BFinancialScreen } from "@/components/hasto/b2b/screens/financial";
+import { B2BAccountDetailScreen } from "@/components/hasto/b2b/screens/account-detail";
+import { B2BTerminalDetailScreen } from "@/components/hasto/b2b/screens/terminal-detail";
+import { B2BTerminalTicketScreen } from "@/components/hasto/b2b/screens/terminal-ticket";
 import { B2BTransactionsScreen } from "@/components/hasto/b2b/screens/transactions";
 import { B2BSettingsScreen } from "@/components/hasto/b2b/screens/settings";
 
@@ -21,10 +24,13 @@ const screens: Record<string, React.ComponentType> = {
   "b2b-verify": B2BVerifyScreen,
   "b2b-dashboard": B2BDashboardScreen,
   "b2b-payment-link": B2BPaymentLinkScreen,
-  "b2b-products": B2BProductsScreen,
+  "b2b-store": B2BStoreScreen,
   "b2b-product-add": B2BProductAddScreen,
   "b2b-contracts": B2BContractsScreen,
-  "b2b-tools": B2BToolsScreen,
+  "b2b-financial": B2BFinancialScreen,
+  "b2b-account-detail": B2BAccountDetailScreen,
+  "b2b-terminal-detail": B2BTerminalDetailScreen,
+  "b2b-terminal-ticket": B2BTerminalTicketScreen,
   "b2b-transactions": B2BTransactionsScreen,
   "b2b-settings": B2BSettingsScreen,
 };
@@ -58,10 +64,13 @@ function getB2BTitle(screen: string): string | undefined {
   const titles: Record<string, string> = {
     "b2b-dashboard": undefined,
     "b2b-payment-link": "ساخت لینک پرداخت",
-    "b2b-products": "محصولات",
+    "b2b-store": "فروشگاه",
     "b2b-product-add": "افزودن محصول",
     "b2b-contracts": "قراردادها",
-    "b2b-tools": "ابزارها",
+    "b2b-financial": "مدیریت مالی",
+    "b2b-account-detail": "جزئیات حساب",
+    "b2b-terminal-detail": "جزئیات پایانه",
+    "b2b-terminal-ticket": "ثبت تیکت",
     "b2b-transactions": "تراکنش‌ها",
     "b2b-settings": "تنظیمات",
   };

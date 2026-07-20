@@ -797,6 +797,182 @@ export const business = {
   },
 };
 
+
+
+// ==================== B2B Financial Data ====================
+
+// بانک‌های ایران کیش
+export const ipoBanks = [
+  { id: "saderat", name: "صادرات", color: "#16a34a" },
+  { id: "tejarat", name: "تجارت", color: "#034ea2" },
+  { id: "refah", name: "رفاه", color: "#dc2626" },
+  { id: "sepah", name: "سپه", color: "#f59e0b" },
+  { id: "gardeshgari", name: "گردشگری", color: "#8b5cf6" },
+  { id: "mellal", name: "ملل", color: "#0891b2" },
+  { id: "kafkar", name: "کارآفرین", color: "#e11d48" },
+  { id: "khavarmianeh", name: "خاورمیانه", color: "#059669" },
+];
+
+// حساب‌های بانکی متصل
+export const bankAccounts = [
+  {
+    id: "BA001", bankId: "tejarat", bankName: "تجارت", color: "#034ea2",
+    accountNumber: "****-****-9012", sheba: "IR360170000000328782636009",
+    holder: "رضا کریمی", balance: 45_600_000, status: "active" as const,
+    transactions: [
+      { id: "TX1", type: "credit" as const, desc: "تسویه روزانه POS", amount: 3_250_000, date: "۱۸/۰۴/۱۴۰۵", time: "۰۰:۰۵" },
+      { id: "TX2", type: "debit" as const, desc: "انتقال به حساب پس‌انداز", amount: -5_000_000, date: "۱۷/۰۴/۱۴۰۵", time: "۱۴:۳۰" },
+      { id: "TX3", type: "credit" as const, desc: "تسویه درگاه وب", amount: 4_500_000, date: "۱۷/۰۴/۱۴۰۵", time: "۰۰:۰۸" },
+      { id: "TX4", type: "credit" as const, desc: "تسویه روزانه POS", amount: 2_800_000, date: "۱۶/۰۴/۱۴۰۵", time: "۰۰:۰۳" },
+      { id: "TX5", type: "debit" as const, desc: "پرداخت اجاره", amount: -15_000_000, date: "۱۵/۰۴/۱۴۰۵", time: "۱۰:۰۰" },
+    ],
+  },
+  {
+    id: "BA002", bankId: "saderat", bankName: "صادرات", color: "#16a34a",
+    accountNumber: "****-****-1098", sheba: "IR150620000000123456789012",
+    holder: "فروشگاه لباس راما", balance: 12_300_000, status: "active" as const,
+    transactions: [
+      { id: "TX6", type: "credit" as const, desc: "تسویه هفتگی", amount: 2_100_000, date: "۱۷/۰۴/۱۴۰۵", time: "۰۰:۱۰" },
+      { id: "TX7", type: "credit" as const, desc: "تسویه روزانه POS", amount: 1_850_000, date: "۱۶/۰۴/۱۴۰۵", time: "۰۰:۰۷" },
+    ],
+  },
+  {
+    id: "BA003", bankId: "sepah", bankName: "سپه", color: "#f59e0b",
+    accountNumber: "****-****-5566", sheba: "IR920570000000987654321098",
+    holder: "رضا کریمی", balance: 8_750_000, status: "active" as const,
+    transactions: [
+      { id: "TX8", type: "credit" as const, desc: "تسویه ماهانه", amount: 15_200_000, date: "۰۱/۰۴/۱۴۰۵", time: "۰۰:۱۵" },
+      { id: "TX9", type: "debit" as const, desc: "پرداخت بیمه", amount: -2_500_000, date: "۱۰/۰۳/۱۴۰۵", time: "۰۹:۰۰" },
+    ],
+  },
+];
+
+// پایانه‌ها (POS + IPG)
+export const terminals = [
+  {
+    id: "POS001", type: "pos" as const, bankId: "tejarat", bankName: "تجارت", color: "#034ea2",
+    serial: "IRK-2847-1936", terminalId: "۲۸۴۷۱۹۳۶", status: "active" as const,
+    lastTx: "۱۸/۰۴ ۱۴:۳۰", todayCount: 12, todayAmount: 3_250_000,
+    weeklyData: [1.2, 2.8, 1.9, 3.5, 2.2, 4.1, 0.95],
+    transactions: [
+      { id: "P001", desc: "فروش — پیراهن مردانه", amount: 850_000, status: "success" as const, date: "۱۸/۰۴", time: "۱۴:۳۰" },
+      { id: "P002", desc: "فروش — کیف دستی", amount: 420_000, status: "failed" as const, date: "۱۸/۰۴", time: "۱۱:۰۰" },
+      { id: "P003", desc: "فروش — کمربند", amount: 350_000, status: "success" as const, date: "۱۸/۰۴", time: "۱۰:۲۰" },
+      { id: "P004", desc: "فروش — شلوار جین", amount: 1_200_000, status: "success" as const, date: "۱۷/۰۴", time: "۱۶:۳۰" },
+    ],
+  },
+  {
+    id: "POS002", type: "pos" as const, bankId: "saderat", bankName: "صادرات", color: "#16a34a",
+    serial: "IRK-5623-8741", terminalId: "۵۶۲۳۸۷۴۱", status: "active" as const,
+    lastTx: "۱۸/۰۴ ۱۳:۱۵", todayCount: 8, todayAmount: 2_100_000,
+    weeklyData: [0.8, 1.5, 2.1, 1.8, 2.5, 3.2, 0.6],
+    transactions: [
+      { id: "P005", desc: "فروش — شلوار جین", amount: 1_200_000, status: "success" as const, date: "۱۸/۰۴", time: "۱۳:۱۵" },
+      { id: "P006", desc: "فروش — کفش ورزشی", amount: 2_500_000, status: "success" as const, date: "۱۷/۰۴", time: "۱۶:۳۰" },
+    ],
+  },
+  {
+    id: "POS003", type: "pos" as const, bankId: "sepah", bankName: "سپه", color: "#f59e0b",
+    serial: "IRK-9184-2053", terminalId: "۹۱۸۴۲۰۵۳", status: "inactive" as const,
+    lastTx: "۱۵/۰۴ ۱۱:۰۰", todayCount: 0, todayAmount: 0,
+    weeklyData: [0, 0, 0.5, 1.2, 0, 0, 0],
+    transactions: [],
+  },
+  {
+    id: "POS004", type: "pos" as const, bankId: "mellal", bankName: "ملل", color: "#0891b2",
+    serial: "IRK-3741-6289", terminalId: "۳۷۴۱۶۲۸۹", status: "active" as const,
+    lastTx: "۱۸/۰۴ ۱۲:۴۵", todayCount: 5, todayAmount: 1_850_000,
+    weeklyData: [1.0, 1.8, 2.0, 1.5, 2.3, 2.8, 0.7],
+    transactions: [
+      { id: "P007", desc: "فروش — مانتو زنانه", amount: 1_800_000, status: "success" as const, date: "۱۸/۰۴", time: "۱۲:۴۵" },
+    ],
+  },
+  {
+    id: "POS005", type: "pos" as const, bankId: "khavarmianeh", bankName: "خاورمیانه", color: "#059669",
+    serial: "IRK-7293-4158", terminalId: "۷۲۹۳۴۱۵۸", status: "active" as const,
+    lastTx: "۱۸/۰۴ ۱۰:۲۰", todayCount: 3, todayAmount: 950_000,
+    weeklyData: [0.5, 0.9, 1.1, 0.8, 1.2, 1.5, 0.3],
+    transactions: [
+      { id: "P008", desc: "فروش — کمربند", amount: 350_000, status: "success" as const, date: "۱۸/۰۴", time: "۱۰:۲۰" },
+    ],
+  },
+  {
+    id: "IPG001", type: "ipg" as const, bankId: "tejarat", bankName: "تجارت", color: "#034ea2",
+    serial: "GW-WEB-001", terminalId: "درگاه وب اصلی", status: "active" as const,
+    url: "pay.hasto.to/rama-store", commission: "۱.۵٪",
+    lastTx: "۱۸/۰۴ ۱۳:۴۵", todayCount: 15, todayAmount: 4_500_000,
+    weeklyData: [1.8, 2.3, 1.5, 3.1, 2.0, 4.2, 0.85],
+    transactions: [
+      { id: "G001", desc: "فروش آنلاین — کفش ورزشی", amount: 2_500_000, status: "success" as const, date: "۱۸/۰۴", time: "۱۳:۴۵" },
+      { id: "G002", desc: "مرجوعی — اکسسوری", amount: -180_000, status: "success" as const, date: "۱۷/۰۴", time: "۱۶:۰۰" },
+    ],
+  },
+  {
+    id: "IPG002", type: "ipg" as const, bankId: "saderat", bankName: "صادرات", color: "#16a34a",
+    serial: "GW-APP-001", terminalId: "درگاه اپلیکیشن", status: "active" as const,
+    url: "api.hasto.to/v1/pay", commission: "۱.۵٪",
+    lastTx: "۱۸/۰۴ ۱۱:۳۰", todayCount: 7, todayAmount: 2_300_000,
+    weeklyData: [0.9, 1.2, 0.8, 1.5, 1.1, 2.0, 0.5],
+    transactions: [
+      { id: "G003", desc: "فروش آنلاین — شال و روسری", amount: 650_000, status: "success" as const, date: "۱۸/۰۴", time: "۱۱:۳۰" },
+    ],
+  },
+  {
+    id: "IPG003", type: "ipg" as const, bankId: "sepah", bankName: "سپه", color: "#f59e0b",
+    serial: "GW-TST-001", terminalId: "درگاه تست", status: "inactive" as const,
+    url: "sandbox.hasto.to/rama", commission: "۰٪",
+    lastTx: "۱۰/۰۴ ۰۹:۰۰", todayCount: 0, todayAmount: 0,
+    weeklyData: [0, 0, 0, 0, 0, 0, 0],
+    transactions: [],
+  },
+];
+
+// خلاصه مالی
+export const financialSummary = {
+  totalBalance: 66_650_000,
+  todaySales: 8_100_000,
+  weekSales: 35_200_000,
+  monthSales: 128_500_000,
+  todaySettled: 4_150_000,
+  pendingSettlement: 3_950_000,
+  successRate: 94.5,
+};
+
+// فروش روزانه (۷ روز)
+export const dailySalesChart = [
+  { day: "شنبه", pos: 4_200_000, online: 1_800_000 },
+  { day: "یکشنبه", pos: 5_100_000, online: 2_300_000 },
+  { day: "دوشنبه", pos: 3_800_000, online: 1_500_000 },
+  { day: "سه‌شنبه", pos: 6_200_000, online: 3_100_000 },
+  { day: "چهارشنبه", pos: 4_900_000, online: 2_000_000 },
+  { day: "پنجشنبه", pos: 7_500_000, online: 4_200_000 },
+  { day: "جمعه", pos: 2_100_000, online: 850_000 },
+];
+
+// تیکت‌های پشتیبانی
+export const supportTickets = [
+  {
+    id: "TK001", terminalId: "POS003", type: "pos" as const, bankName: "سپه",
+    issueType: "عدم اتصال", priority: "high" as const, status: "open" as const,
+    desc: "دستگاه از دیروز متصل نمی‌شود", date: "۱۷/۰۴/۱۴۰۵", ticketNo: "TK-1405-001",
+  },
+  {
+    id: "TK002", terminalId: "IPG003", type: "ipg" as const, bankName: "سپه",
+    issueType: "خطای نرم‌افزاری", priority: "medium" as const, status: "in_progress" as const,
+    desc: "خطای ۵۰۰ هنگام پرداخت", date: "۱۶/۰۴/۱۴۰۵", ticketNo: "TK-1405-002",
+  },
+];
+
+// نوع مشکلات تیکت
+export const ticketIssueTypes = [
+  "خرابی سخت‌افزاری",
+  "خطای نرم‌افزاری",
+  "عدم اتصال به شبکه",
+  "تراکنش ناموفق مکرر",
+  "مشکل در تسویه",
+  "سایر",
+];
+
 // ==================== Financial Charts Data ====================
 export const cashFlowData = [
   { month: "فروردین", income: 18000000, expense: 12000000 },

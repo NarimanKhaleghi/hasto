@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, Package, Plus, FileText, Wrench } from "lucide-react";
+import { LayoutDashboard, ShoppingBag, Plus, FileText, Landmark } from "lucide-react";
 import { useAppStore, type B2BScreen } from "@/lib/hasto-store";
 import { cn } from "@/lib/utils";
 
@@ -13,10 +13,10 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { id: "b2b-dashboard", label: "داشبورد", icon: LayoutDashboard },
-  { id: "b2b-products", label: "محصولات", icon: Package },
+  { id: "b2b-store", label: "فروشگاه", icon: ShoppingBag },
   { id: "b2b-payment-link", label: "پرداخت", icon: Plus, isCentral: true },
   { id: "b2b-contracts", label: "قراردادها", icon: FileText },
-  { id: "b2b-tools", label: "ابزارها", icon: Wrench },
+  { id: "b2b-financial", label: "مدیریت مالی", icon: Landmark },
 ];
 
 export function B2BBottomNav() {
@@ -24,8 +24,9 @@ export function B2BBottomNav() {
   const setB2BScreen = useAppStore((s) => s.setB2BScreen);
 
   const getActiveTab = (): B2BScreen => {
-    if (b2bScreen.startsWith("b2b-product")) return "b2b-products";
+    if (b2bScreen === "b2b-store" || b2bScreen === "b2b-product-add") return "b2b-store";
     if (b2bScreen.startsWith("b2b-payment")) return "b2b-payment-link";
+    if (b2bScreen === "b2b-financial" || b2bScreen === "b2b-account-detail" || b2bScreen === "b2b-terminal-detail" || b2bScreen === "b2b-terminal-ticket") return "b2b-financial";
     return b2bScreen as B2BScreen;
   };
 

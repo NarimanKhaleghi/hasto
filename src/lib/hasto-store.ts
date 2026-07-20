@@ -48,10 +48,13 @@ export type B2BScreen =
   | "b2b-verify"
   | "b2b-dashboard"
   | "b2b-payment-link"
-  | "b2b-products"
+  | "b2b-store"
   | "b2b-product-add"
   | "b2b-contracts"
-  | "b2b-tools"
+  | "b2b-financial"
+  | "b2b-account-detail"
+  | "b2b-terminal-detail"
+  | "b2b-terminal-ticket"
   | "b2b-transactions"
   | "b2b-settings";
 
@@ -100,6 +103,12 @@ type AppState = {
   // Active contract
   activeContractId: string | null;
   setActiveContractId: (id: string | null) => void;
+
+  // Active terminal/account for detail pages
+  activeAccountId: string | null;
+  activeTerminalId: string | null;
+  setActiveAccountId: (id: string | null) => void;
+  setActiveTerminalId: (id: string | null) => void;
 
   // Phone frame toggle (desktop preview)
   phoneFrame: boolean;
@@ -169,6 +178,11 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   activeContractId: null,
   setActiveContractId: (id) => set({ activeContractId: id }),
+
+  activeAccountId: null,
+  activeTerminalId: null,
+  setActiveAccountId: (id) => set({ activeAccountId: id }),
+  setActiveTerminalId: (id) => set({ activeTerminalId: id }),
 
   phoneFrame: true,
   setPhoneFrame: (v) => set({ phoneFrame: v }),

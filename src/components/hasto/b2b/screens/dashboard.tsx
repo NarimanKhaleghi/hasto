@@ -13,9 +13,8 @@ import {
   Link2,
   Package,
   FileText,
-  Wrench,
+  Landmark, ShoppingBag,
   ChevronLeft,
-  ShoppingBag,
   CheckCircle2,
   ArrowUpLeft,
   Clock,
@@ -69,9 +68,8 @@ export function B2BDashboardScreen() {
 
   const quickActions = [
     { label: "ساخت لینک پرداخت", icon: Link2, screen: "b2b-payment-link" as const, color: "#034ea2" },
-    { label: "مدیریت محصولات", icon: Package, screen: "b2b-products" as const, color: "#16a34a" },
     { label: "قراردادها", icon: FileText, screen: "b2b-contracts" as const, color: "#8B5CF6" },
-    { label: "ابزارها", icon: Wrench, screen: "b2b-tools" as const, color: "#F59E0B" },
+    { label: "مدیریت مالی", icon: Landmark, screen: "b2b-financial" as const, color: "#F59E0B" },
   ];
 
   const maxAmount = Math.max(...business.weeklyChart.map((d) => d.amount));
@@ -112,7 +110,6 @@ export function B2BDashboardScreen() {
                 عضو از {business.profile.joinDate}
               </div>
               <div className="mr-auto flex items-center gap-1.5 text-white/70 text-[11px]">
-                <ShoppingBag className="w-3.5 h-3.5" />
                 {fa(business.products.length)} محصول
               </div>
             </div>
@@ -258,7 +255,6 @@ export function B2BDashboardScreen() {
               return (
                 <div key={p.id} className="flex items-center gap-3 px-4 py-3">
                   <div className="w-10 h-10 rounded-xl bg-[#034ea2]/10 flex items-center justify-center shrink-0">
-                    <ShoppingBag className="w-5 h-5 text-[#034ea2] dark:text-[#6BA0F5]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
