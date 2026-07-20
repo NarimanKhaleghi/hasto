@@ -40,10 +40,7 @@ export function Header({ title }: { title?: string }) {
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#034ea2] to-[#023069] flex items-center justify-center text-white text-sm font-bold shadow-md">
                 {user.name.charAt(0)}
               </div>
-              <div className="hidden sm:flex flex-col items-start leading-tight">
-                <span className="text-xs font-medium text-muted-foreground">خوش آمدید</span>
-                <span className="text-sm font-bold">{user.name}</span>
-              </div>
+
             </button>
           )}
         </div>

@@ -379,15 +379,9 @@ export function DashboardScreen() {
         </SectionCard>
       </div>
 
-      {/* Referral Program Widget */}
-      <div className="px-4 mt-4">
-        <ReferralProgramWidget />
-      </div>
 
-      {/* Security Center Widget */}
-      <div className="px-4 mt-4">
-        <SecurityCenterWidget />
-      </div>
+
+
 
       {/* Help & Support link */}
       <div className="px-4 mt-4 mb-4">

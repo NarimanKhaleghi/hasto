@@ -1,5 +1,6 @@
 "use client";
 
+import { useAppStore } from "@/lib/hasto-store";
 import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -14,6 +15,7 @@ import {
   YAxis,
   ResponsiveContainer,
   Tooltip,
+  CartesianGrid,
 } from "recharts";
 import {
   Wallet,
@@ -40,6 +42,11 @@ import {
   Car,
   Bitcoin,
   Sparkles,
+  Shield,
+  Target,
+  Trophy,
+  Zap,
+  Calendar as CalendarIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -55,6 +62,7 @@ import {
   totalAssetsValue,
   totalDebts,
   totalReceivables,
+  totalSavingsGoals,
   fa,
   formatToman,
   type Asset,
@@ -62,6 +70,13 @@ import {
   type Receivable,
 } from "@/lib/hasto-data";
 import { SectionCard, ProgressBar } from "@/components/hasto/shared/ui";
+import { FinancialHealthScore } from "@/components/hasto/shared/financial-health-score";
+import { SpendingInsights } from "@/components/hasto/shared/spending-insights";
+import { SpendingLimitWidget } from "@/components/hasto/shared/spending-limit-widget";
+import { SavingsGoalsPreview } from "@/components/hasto/shared/savings-goals-preview";
+import { AchievementsPreview } from "@/components/hasto/shared/achievements-preview";
+import { IncomeExpenseComparison } from "@/components/hasto/shared/income-expense-comparison";
+import { SpendingCategoriesPreview } from "@/components/hasto/shared/spending-categories-preview";
 
 // ==================== Color Palette ====================
 const PALETTE = ["#034ea2", "#16a34a", "#F59E0B", "#EF4444", "#8B5CF6"];
@@ -1550,7 +1565,7 @@ function DashboardTab() {
       </SectionCard>
 
       {/* Income vs Expense Chart */}
-      <SectionCard title="درآمد و هزینه" icon={BarChartIcon}>
+      <SectionCard title="درآمد و هزینه" icon={BarChart3}>
         <IncomeExpenseComparison />
       </SectionCard>
 

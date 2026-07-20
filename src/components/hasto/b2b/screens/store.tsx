@@ -1657,7 +1657,7 @@ function OpenAccountTool() {
 export function B2BStoreScreen() {
   return (
     <div className="pb-4">
-      <Tabs defaultValue="products" className="w-full">
+      <Tabs defaultValue="tools" className="w-full">
         <div className="px-4 mb-4">
           <TabsList className="w-full h-11 bg-muted/50 rounded-2xl p-1">
             <TabsTrigger
