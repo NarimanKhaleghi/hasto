@@ -363,7 +363,7 @@ input[type="number"],
 input.persian-number {
   font-feature-settings: "ss01" on, "ss02" on;
   direction: ltr;
-  text-align: right;
+  text-align: center;
 }
 
 /* Reverse directional icons in RTL */
