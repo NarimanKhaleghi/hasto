@@ -16,6 +16,13 @@ import { B2BFinancialScreen } from "@/components/hasto/b2b/screens/financial";
 import { B2BAccountDetailScreen } from "@/components/hasto/b2b/screens/account-detail";
 import { B2BTerminalDetailScreen } from "@/components/hasto/b2b/screens/terminal-detail";
 import { B2BTerminalTicketScreen } from "@/components/hasto/b2b/screens/terminal-ticket";
+import { B2BToolOpenAccountScreen } from "@/components/hasto/b2b/screens/tool-open-account";
+import { B2BToolRequestPosScreen } from "@/components/hasto/b2b/screens/tool-request-pos";
+import { B2BToolRequestGatewayScreen } from "@/components/hasto/b2b/screens/tool-request-gateway";
+import { B2BToolApiScreen } from "@/components/hasto/b2b/screens/tool-api";
+import { B2BToolTelegramBotScreen } from "@/components/hasto/b2b/screens/tool-telegram-bot";
+import { B2BToolInstagramBotScreen } from "@/components/hasto/b2b/screens/tool-instagram-bot";
+import { B2BToolWebPageScreen } from "@/components/hasto/b2b/screens/tool-web-page";
 import { B2BTransactionsScreen } from "@/components/hasto/b2b/screens/transactions";
 import { B2BSettingsScreen } from "@/components/hasto/b2b/screens/settings";
 
@@ -31,6 +38,13 @@ const screens: Record<string, React.ComponentType> = {
   "b2b-account-detail": B2BAccountDetailScreen,
   "b2b-terminal-detail": B2BTerminalDetailScreen,
   "b2b-terminal-ticket": B2BTerminalTicketScreen,
+  "b2b-tool-open-account": B2BToolOpenAccountScreen,
+  "b2b-tool-request-pos": B2BToolRequestPosScreen,
+  "b2b-tool-request-gateway": B2BToolRequestGatewayScreen,
+  "b2b-tool-api": B2BToolApiScreen,
+  "b2b-tool-telegram-bot": B2BToolTelegramBotScreen,
+  "b2b-tool-instagram-bot": B2BToolInstagramBotScreen,
+  "b2b-tool-web-page": B2BToolWebPageScreen,
   "b2b-transactions": B2BTransactionsScreen,
   "b2b-settings": B2BSettingsScreen,
 };
@@ -71,6 +85,13 @@ function getB2BTitle(screen: string): string | undefined {
     "b2b-account-detail": "جزئیات حساب",
     "b2b-terminal-detail": "جزئیات پایانه",
     "b2b-terminal-ticket": "ثبت تیکت",
+    "b2b-tool-open-account": "افتتاح حساب",
+    "b2b-tool-request-pos": "درخواست کارتخوان",
+    "b2b-tool-request-gateway": "درخواست درگاه پرداخت",
+    "b2b-tool-api": "کلید API",
+    "b2b-tool-telegram-bot": "ربات تلگرام",
+    "b2b-tool-instagram-bot": "ربات اینستاگرام",
+    "b2b-tool-web-page": "فروشگاه وب",
     "b2b-transactions": "تراکنش‌ها",
     "b2b-settings": "تنظیمات",
   };

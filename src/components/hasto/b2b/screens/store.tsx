@@ -9,6 +9,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
+  Landmark,
+  CreditCard,
+  Globe,
+  Code2,
+  Send,
+  Instagram as InstagramIcon,
+  Store as StoreIcon,
   Package,
   Search,
   Plus,
@@ -20,10 +27,6 @@ import {
   X,
   MoreVertical,
   ImageOff,
-  Code2,
-  Send,
-  Instagram,
-  Globe,
   Eye,
   EyeOff,
   Copy,
@@ -36,15 +39,6 @@ import {
   Bot,
   Palette,
   Link2,
-  CreditCard,
-  Building2,
-  Landmark,
-  MapPin,
-  FileText,
-  ChevronDown,
-  CheckCircle,
-  Clock,
-  Smartphone,
 } from "lucide-react";
 
 // ==================== Shared Components ====================
@@ -346,6 +340,48 @@ function ProductsTab() {
     </div>
   );
 }
+
+
+// ==================== Tools Grid ====================
+function ToolsGrid() {
+  const setB2BScreen = useAppStore((s) => s.setB2BScreen);
+  const setB2BActiveAccountId = useAppStore((s) => s.setActiveAccountId);
+  const setB2BActiveTerminalId = useAppStore((s) => s.setActiveTerminalId);
+
+  const tools = [
+    { id: "b2b-tool-open-account", label: "افتتاح حساب", icon: Landmark, color: "#034ea2", desc: "حساب بانکی جدید" },
+    { id: "b2b-tool-request-pos", label: "درخواست کارتخوان", icon: CreditCard, color: "#16a34a", desc: "دستگاه POS" },
+    { id: "b2b-tool-request-gateway", label: "درخواست درگاه", icon: Globe, color: "#8b5cf6", desc: "درگاه پرداخت" },
+    { id: "b2b-tool-api", label: "کلید API", icon: Code2, color: "#f59e0b", desc: "اتصال برنامه‌نویسی" },
+    { id: "b2b-tool-telegram-bot", label: "ربات تلگرام", icon: Send, color: "#0088cc", desc: "اتصال تلگرام" },
+    { id: "b2b-tool-instagram-bot", label: "ربات اینستاگرام", icon: InstagramIcon, color: "#E4405F", desc: "اتصال اینستاگرام" },
+    { id: "b2b-tool-web-page", label: "فروشگاه وب", icon: StoreIcon, color: "#059669", desc: "صفحه رایگان" },
+  ];
+
+  return (
+    <div className="grid grid-cols-3 gap-3 pt-2">
+      {tools.map((tool) => {
+        const Icon = tool.icon;
+        return (
+          <motion.button
+            key={tool.id}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setB2BScreen(tool.id as any)}
+            className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-card border border-border shadow-soft hover:shadow-md transition-shadow"
+          >
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center"
+              style={{ background: `${tool.color}15` }}>
+              <Icon className="w-6 h-6" style={{ color: tool.color }} />
+            </div>
+            <span className="text-[11px] font-bold text-center leading-tight">{tool.label}</span>
+            <span className="text-[9px] text-muted-foreground">{tool.desc}</span>
+          </motion.button>
+        );
+      })}
+    </div>
+  );
+}
+
 
 function ProductActionSheet({
   productId,
@@ -1646,15 +1682,7 @@ export function B2BStoreScreen() {
         </TabsContent>
 
         <TabsContent value="tools" className="px-4 mt-0">
-          <div className="space-y-4">
-            <APITool />
-            <TelegramBotTool />
-            <InstagramBotTool />
-            <WebPageTool />
-            <RequestPOSTool />
-            <RequestGatewayTool />
-            <OpenAccountTool />
-          </div>
+          <ToolsGrid />
         </TabsContent>
       </Tabs>
     </div>

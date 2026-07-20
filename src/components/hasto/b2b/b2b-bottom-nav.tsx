@@ -24,7 +24,7 @@ export function B2BBottomNav() {
   const setB2BScreen = useAppStore((s) => s.setB2BScreen);
 
   const getActiveTab = (): B2BScreen => {
-    if (b2bScreen === "b2b-store" || b2bScreen === "b2b-product-add") return "b2b-store";
+    if (b2bScreen === "b2b-store" || b2bScreen === "b2b-product-add" || b2bScreen.startsWith("b2b-tool-")) return "b2b-store";
     if (b2bScreen.startsWith("b2b-payment")) return "b2b-payment-link";
     if (b2bScreen === "b2b-financial" || b2bScreen === "b2b-account-detail" || b2bScreen === "b2b-terminal-detail" || b2bScreen === "b2b-terminal-ticket") return "b2b-financial";
     return b2bScreen as B2BScreen;

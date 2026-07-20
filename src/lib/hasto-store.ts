@@ -55,6 +55,13 @@ export type B2BScreen =
   | "b2b-account-detail"
   | "b2b-terminal-detail"
   | "b2b-terminal-ticket"
+  | "b2b-tool-open-account"
+  | "b2b-tool-request-pos"
+  | "b2b-tool-request-gateway"
+  | "b2b-tool-api"
+  | "b2b-tool-telegram-bot"
+  | "b2b-tool-instagram-bot"
+  | "b2b-tool-web-page"
   | "b2b-transactions"
   | "b2b-settings";
 
